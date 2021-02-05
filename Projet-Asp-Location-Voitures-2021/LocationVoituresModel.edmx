@@ -4,152 +4,159 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="locationVoituresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'locationVoitures.dbo.Admin' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Email" />
-            <PropertyRef Name="Password" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Locataire">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nom" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Phone_number" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="image_Locataire" Type="image" />
-        </EntityType>
-        <EntityType Name="Proprietaire">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nom" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Phone_number" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="image_Proprietaire" Type="image" />
-        </EntityType>
-        <EntityType Name="Voiture">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Marque" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Couleur" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Annee" Type="int" />
-          <Property Name="Diponibilite" Type="bit" Nullable="false" />
-          <Property Name="image_Voiture" Type="image" Nullable="false" />
-          <Property Name="Location_date" Type="datetime" Nullable="false" />
-          <Property Name="Id_Proprietaire" Type="int" Nullable="false" />
-          <Property Name="Id_Locataire" Type="int" />
-        </EntityType>
-        <Association Name="FK_Voiture_Locataire">
-          <End Role="Locataire" Type="Self.Locataire" Multiplicity="0..1" />
-          <End Role="Voiture" Type="Self.Voiture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Locataire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Voiture">
-              <PropertyRef Name="Id_Locataire" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Voiture_Proprietaire">
-          <End Role="Proprietaire" Type="Self.Proprietaire" Multiplicity="1" />
-          <End Role="Voiture" Type="Self.Voiture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proprietaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Voiture">
-              <PropertyRef Name="Id_Proprietaire" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="locationVoituresModelStoreContainer">
-          <EntitySet Name="Locataire" EntityType="Self.Locataire" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Proprietaire" EntityType="Self.Proprietaire" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Voiture" EntityType="Self.Voiture" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Admin" EntityType="Self.Admin" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Admin].[Id] AS [Id], 
-    [Admin].[Email] AS [Email], 
-    [Admin].[Password] AS [Password]
-    FROM [dbo].[Admin] AS [Admin]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_Voiture_Locataire" Association="Self.FK_Voiture_Locataire">
-            <End Role="Locataire" EntitySet="Locataire" />
-            <End Role="Voiture" EntitySet="Voiture" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Voiture_Proprietaire" Association="Self.FK_Voiture_Proprietaire">
-            <End Role="Proprietaire" EntitySet="Proprietaire" />
-            <End Role="Voiture" EntitySet="Voiture" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="locationVoituresModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="locationVoituresModelStoreContainer">
+    <EntitySet Name="UserSet" EntityType="locationVoituresModel.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet_Locataire" EntityType="locationVoituresModel.Store.UserSet_Locataire" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet_Proprietaire" EntityType="locationVoituresModel.Store.UserSet_Proprietaire" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Voiture" EntityType="locationVoituresModel.Store.Voiture" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReservationSet" EntityType="locationVoituresModel.Store.ReservationSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Voiture_Proprietaire" Association="locationVoituresModel.Store.FK_Voiture_Proprietaire">
+      <End Role="Proprietaire" EntitySet="UserSet_Proprietaire" />
+      <End Role="Voiture" EntitySet="Voiture" />
+    </AssociationSet>
+    <AssociationSet Name="LocataireReservation" Association="locationVoituresModel.Store.LocataireReservation">
+      <End Role="Locataire" EntitySet="UserSet_Locataire" />
+      <End Role="Reservation" EntitySet="ReservationSet" />
+    </AssociationSet>
+    <AssociationSet Name="ReservationVoiture" Association="locationVoituresModel.Store.ReservationVoiture">
+      <End Role="Reservation" EntitySet="ReservationSet" />
+      <End Role="Voiture" EntitySet="Voiture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locataire_inherits_User" Association="locationVoituresModel.Store.FK_Locataire_inherits_User">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Locataire" EntitySet="UserSet_Locataire" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proprietaire_inherits_User" Association="locationVoituresModel.Store.FK_Proprietaire_inherits_User">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Proprietaire" EntitySet="UserSet_Proprietaire" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone_number" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adresse" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet_Locataire">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="image_Locataire" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Cin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet_Proprietaire">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="image_Proprietaire" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Voiture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marque" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Couleur" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Annee" Type="int" Nullable="true" />
+    <Property Name="image_Voiture" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Id_Proprietaire" Type="int" Nullable="false" />
+    <Property Name="Prix" Type="decimal" Nullable="false" />
+    <Property Name="Promotion" Type="smallint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ReservationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date_reservation" Type="datetime" Nullable="false" />
+    <Property Name="Date_retour" Type="datetime" Nullable="false" />
+    <Property Name="Montant" Type="decimal" Nullable="false" />
+    <Property Name="LocataireId" Type="int" Nullable="false" />
+    <Property Name="VoitureId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Voiture_Proprietaire">
+    <End Role="Proprietaire" Type="locationVoituresModel.Store.UserSet_Proprietaire" Multiplicity="1" />
+    <End Role="Voiture" Type="locationVoituresModel.Store.Voiture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proprietaire">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Voiture">
+        <PropertyRef Name="Id_Proprietaire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocataireReservation">
+    <End Role="Locataire" Type="locationVoituresModel.Store.UserSet_Locataire" Multiplicity="1" />
+    <End Role="Reservation" Type="locationVoituresModel.Store.ReservationSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locataire">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="LocataireId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReservationVoiture">
+    <End Role="Reservation" Type="locationVoituresModel.Store.ReservationSet" Multiplicity="*" />
+    <End Role="Voiture" Type="locationVoituresModel.Store.Voiture" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Voiture">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="VoitureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locataire_inherits_User">
+    <End Role="User" Type="locationVoituresModel.Store.UserSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Locataire" Type="locationVoituresModel.Store.UserSet_Locataire" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locataire">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proprietaire_inherits_User">
+    <End Role="User" Type="locationVoituresModel.Store.UserSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Proprietaire" Type="locationVoituresModel.Store.UserSet_Proprietaire" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Proprietaire">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="locationVoituresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Locataire">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        <EntityType Name="Locataire" BaseType="locationVoituresModel.User">
           <Property Name="image_Locataire" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Voiture" Relationship="Self.FK_Voiture_Locataire" FromRole="Locataire" ToRole="Voiture" />
+          <Property Name="Cin" Type="String" Nullable="false" />
+          <NavigationProperty Name="Reservation" Relationship="locationVoituresModel.LocataireReservation" FromRole="Locataire" ToRole="Reservation" />
         </EntityType>
-        <EntityType Name="Proprietaire">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        <EntityType Name="Proprietaire" BaseType="locationVoituresModel.User">
           <Property Name="image_Proprietaire" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Voiture" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Proprietaire" ToRole="Voiture" />
         </EntityType>
@@ -161,36 +168,12 @@ avertissement 6002: La table/vue 'locationVoitures.dbo.Admin' n'a pas de clé pr
           <Property Name="Marque" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Couleur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Annee" Type="Int32" />
-          <Property Name="Diponibilite" Type="Boolean" Nullable="false" />
           <Property Name="image_Voiture" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="Location_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Id_Proprietaire" Type="Int32" Nullable="false" />
-          <Property Name="Id_Locataire" Type="Int32" />
-          <NavigationProperty Name="Locataire" Relationship="Self.FK_Voiture_Locataire" FromRole="Voiture" ToRole="Locataire" />
           <NavigationProperty Name="Proprietaire" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Voiture" ToRole="Proprietaire" />
+          <Property Name="Prix" Type="Decimal" Nullable="false" />
+          <Property Name="Promotion" Type="Int16" Nullable="true" />
         </EntityType>
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Email" />
-            <PropertyRef Name="Password" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Voiture_Locataire">
-          <End Role="Locataire" Type="Self.Locataire" Multiplicity="0..1" />
-          <End Role="Voiture" Type="Self.Voiture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Locataire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Voiture">
-              <PropertyRef Name="Id_Locataire" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Voiture_Proprietaire">
           <End Role="Proprietaire" Type="Self.Proprietaire" Multiplicity="1" />
           <End Role="Voiture" Type="Self.Voiture" Multiplicity="*" />
@@ -204,16 +187,9 @@ avertissement 6002: La table/vue 'locationVoitures.dbo.Admin' n'a pas de clé pr
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="locationVoituresEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Locataire" EntityType="Self.Locataire" />
-          <EntitySet Name="Proprietaire" EntityType="Self.Proprietaire" />
           <EntitySet Name="Voiture" EntityType="Self.Voiture" />
-          <EntitySet Name="Admin" EntityType="Self.Admin" />
-          <AssociationSet Name="FK_Voiture_Locataire" Association="Self.FK_Voiture_Locataire">
-            <End Role="Locataire" EntitySet="Locataire" />
-            <End Role="Voiture" EntitySet="Voiture" />
-          </AssociationSet>
           <AssociationSet Name="FK_Voiture_Proprietaire" Association="Self.FK_Voiture_Proprietaire">
-            <End Role="Proprietaire" EntitySet="Proprietaire" />
+            <End Role="Proprietaire" EntitySet="UserSet" />
             <End Role="Voiture" EntitySet="Voiture" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
@@ -246,6 +222,16 @@ avertissement 6002: La table/vue 'locationVoitures.dbo.Admin' n'a pas de clé pr
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="UserSet" EntityType="locationVoituresModel.User" />
+          <EntitySet Name="ReservationSet" EntityType="locationVoituresModel.Reservation" />
+          <AssociationSet Name="LocataireReservation" Association="locationVoituresModel.LocataireReservation">
+            <End Role="Locataire" EntitySet="UserSet" />
+            <End Role="Reservation" EntitySet="ReservationSet" />
+          </AssociationSet>
+          <AssociationSet Name="ReservationVoiture" Association="locationVoituresModel.ReservationVoiture">
+            <End Role="Reservation" EntitySet="ReservationSet" />
+            <End Role="Voiture" EntitySet="Voiture" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -258,85 +244,113 @@ avertissement 6002: La table/vue 'locationVoitures.dbo.Admin' n'a pas de clé pr
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Phone_number" Type="String" Nullable="false" />
+          <Property Name="Adresse" Type="String" Nullable="false" />
+          <Property Name="Role" Type="String" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_reservation" Type="DateTime" Nullable="false" />
+          <Property Name="Date_retour" Type="DateTime" Nullable="false" />
+          <Property Name="Montant" Type="Decimal" Nullable="false" />
+          <Property Name="LocataireId" Type="Int32" Nullable="false" />
+          <Property Name="VoitureId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="LocataireReservation">
+          <End Type="locationVoituresModel.Locataire" Role="Locataire" Multiplicity="1" />
+          <End Type="locationVoituresModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locataire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="LocataireId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReservationVoiture">
+          <End Type="locationVoituresModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <End Type="locationVoituresModel.Voiture" Role="Voiture" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Voiture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="VoitureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="locationVoituresModelStoreContainer" CdmEntityContainer="locationVoituresEntities">
-          <EntitySetMapping Name="Locataire">
-            <EntityTypeMapping TypeName="locationVoituresModel.Locataire">
-              <MappingFragment StoreEntitySet="Locataire">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
-                <ScalarProperty Name="image_Locataire" ColumnName="image_Locataire" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Proprietaire">
-            <EntityTypeMapping TypeName="locationVoituresModel.Proprietaire">
-              <MappingFragment StoreEntitySet="Proprietaire">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
-                <ScalarProperty Name="image_Proprietaire" ColumnName="image_Proprietaire" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Voiture">
-            <EntityTypeMapping TypeName="locationVoituresModel.Voiture">
-              <MappingFragment StoreEntitySet="Voiture">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Marque" ColumnName="Marque" />
-                <ScalarProperty Name="Couleur" ColumnName="Couleur" />
-                <ScalarProperty Name="Annee" ColumnName="Annee" />
-                <ScalarProperty Name="Diponibilite" ColumnName="Diponibilite" />
-                <ScalarProperty Name="image_Voiture" ColumnName="image_Voiture" />
-                <ScalarProperty Name="Location_date" ColumnName="Location_date" />
-                <ScalarProperty Name="Id_Proprietaire" ColumnName="Id_Proprietaire" />
-                <ScalarProperty Name="Id_Locataire" ColumnName="Id_Locataire" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Admin">
-            <EntityTypeMapping TypeName="locationVoituresModel.Admin">
-              <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="locationVoituresModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="locationVoituresModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="locationVoituresModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="locationVoituresModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="locationVoituresModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="locationVoituresModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="locationVoituresModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="locationVoituresModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="locationVoituresModel.Store.sp_upgraddiagrams" />
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="locationVoituresModelStoreContainer" CdmEntityContainer="locationVoituresEntities">
+    <EntitySetMapping Name="Voiture">
+      <EntityTypeMapping TypeName="IsTypeOf(locationVoituresModel.Voiture)">
+        <MappingFragment StoreEntitySet="Voiture">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Marque" ColumnName="Marque" />
+          <ScalarProperty Name="Couleur" ColumnName="Couleur" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+          <ScalarProperty Name="image_Voiture" ColumnName="image_Voiture" />
+          <ScalarProperty Name="Id_Proprietaire" ColumnName="Id_Proprietaire" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="Promotion" ColumnName="Promotion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(locationVoituresModel.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(locationVoituresModel.Locataire)">
+        <MappingFragment StoreEntitySet="UserSet_Locataire">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="image_Locataire" ColumnName="image_Locataire" />
+          <ScalarProperty Name="Cin" ColumnName="Cin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(locationVoituresModel.Proprietaire)">
+        <MappingFragment StoreEntitySet="UserSet_Proprietaire">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="image_Proprietaire" ColumnName="image_Proprietaire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReservationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(locationVoituresModel.Reservation)">
+        <MappingFragment StoreEntitySet="ReservationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date_reservation" ColumnName="Date_reservation" />
+          <ScalarProperty Name="Date_retour" ColumnName="Date_retour" />
+          <ScalarProperty Name="Montant" ColumnName="Montant" />
+          <ScalarProperty Name="LocataireId" ColumnName="LocataireId" />
+          <ScalarProperty Name="VoitureId" ColumnName="VoitureId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -350,7 +364,7 @@ avertissement 6002: La table/vue 'locationVoitures.dbo.Admin' n'a pas de clé pr
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
       </DesignerInfoPropertySet>
     </Options>

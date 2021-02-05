@@ -134,12 +134,14 @@
     </Content>
     <Content Include="Areas\Admin\Views\Voiture\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Voitures\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="LocationVoituresModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LocationVoituresModel.edmx</DependentUpon>
       <LastGenOutput>LocationVoituresModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="LocationVoituresModel.edmx.sql" />
     <Content Include="LocationVoituresModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LocationVoituresModel.edmx</DependentUpon>
@@ -149,6 +151,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\master.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -2008,14 +2011,12 @@
     <Content Include="vendor\bootstrap\css\bootstrap.min.css.map" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs">
-      <DependentUpon>LocationVoituresModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\VoitureController.cs" />
+    <Compile Include="Areas\Voitures\VoitureAreaRegistration.cs" />
     <Compile Include="Areas\Locataire\LocataireAreaRegistration.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\VoitureController.cs" />
@@ -2045,10 +2046,16 @@
     <Compile Include="Proprietaire.cs">
       <DependentUpon>LocationVoituresModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reservation.cs">
+      <DependentUpon>LocationVoituresModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>LocationVoituresModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>LocationVoituresModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
       <DependentUpon>LocationVoituresModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Voiture.cs">
@@ -2075,6 +2082,9 @@
     <Folder Include="Areas\Locataire\Controllers\" />
     <Folder Include="Areas\Locataire\Models\" />
     <Folder Include="Areas\Locataire\Views\Shared\" />
+    <Folder Include="Areas\Voitures\Controllers\" />
+    <Folder Include="Areas\Voitures\Models\" />
+    <Folder Include="Areas\Voitures\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -2109,6 +2119,13 @@
       <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,10 +10,15 @@
 namespace Projet_Asp_Location_Voitures_2021
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class Reservation
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Id { get; set; }
+        public System.DateTime Date_reservation { get; set; }
+        public System.DateTime Date_retour { get; set; }
+        public decimal Montant { get; set; }
+        public int LocataireId { get; set; }
+        public int VoitureId { get; set; }
     }
 }
