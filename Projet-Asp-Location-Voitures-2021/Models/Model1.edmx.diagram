@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9e06df5efa8a482e9d5ee9017ce2fffb" Name="Diagram1">
+        <EntityTypeShape EntityType="LocationDeVoituresModel.Admin" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocationDeVoituresModel.Locataire" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocationDeVoituresModel.Proprietaire" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocationDeVoituresModel.Reservation" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocationDeVoituresModel.Voiture" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="LocationDeVoituresModel.FK_Reservation_Locataire" ManuallyRouted="false" />
+        <AssociationConnector Association="LocationDeVoituresModel.FK_Voiture_Proprietaire" ManuallyRouted="false" />
+        <AssociationConnector Association="LocationDeVoituresModel.FK_Reservation_Voiture" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

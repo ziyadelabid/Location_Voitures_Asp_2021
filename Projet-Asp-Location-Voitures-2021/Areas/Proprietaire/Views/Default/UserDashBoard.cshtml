@@ -1,0 +1,65 @@
+﻿
+
+@model IEnumerable<Projet_Asp_Location_Voitures_2021.Models.Voiture>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+@{ Layout = "~/Areas/Proprietaire/Views/Shared/UserLayout.cshtml";
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">
+            @if (Session["NameProp"] != null)
+            {<text>
+                    Welcome @Session["NameProp"].ToString() </text>
+        }
+            </h1>
+        <p class="lead">We are happy to work with you !</p>
+    </div>
+</div>
+
+
+<head>
+    <style>
+        .container
+        {
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+        }
+        .jumbotron {
+            background-color: #a8eb34;
+        }
+        #body {
+            padding: 10px;
+            padding-bottom: 60px; /* Height of the footer */
+        }
+
+        .card {
+            margin: 15px;
+        }
+    </style>
+</head>
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="card" style="width: 18rem;">
+            <img src=@item.Image_Voiture class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"> @item.Marque</h5>
+                <p class="card-text">  @item.Prix dhs </p>
+                <p class="card-text">@item.Couleur</p>
+                <p>@Html.ActionLink("Edit", "Edit", new { id = item.Id_Voiture })</p>
+                <p>  @Html.ActionLink("Delete", "Delete", new { id = item.Id_Voiture })</p>
+                <a href="#" class="btn btn-success">More Details</a>
+              
+            </div>
+        </div>
+
+
+    }
+</div>

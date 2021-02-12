@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LocationDeVoituresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id_Admin" />
+          </Key>
+          <Property Name="Id_Admin" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Locataire">
+          <Key>
+            <PropertyRef Name="Id_Locataire" />
+          </Key>
+          <Property Name="Id_Locataire" Type="int" Nullable="false" />
+          <Property Name="Email_Loc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password_Loc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone_number_Loc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adresse_Loc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name_Loc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cin_Loc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Permis" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="image_Loc" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Proprietaire">
+          <Key>
+            <PropertyRef Name="Id_Proprietaire" />
+          </Key>
+          <Property Name="Id_Proprietaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Prop" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email_Prop" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password_Prop" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone_number_Prop" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adresse_Prop" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Image_Prop" Type="nvarchar(max)" />
+          <Property Name="Role" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id_Reservation" />
+          </Key>
+          <Property Name="Id_Reservation" Type="int" Nullable="false" />
+          <Property Name="Date_Reservation" Type="datetime" Nullable="false" />
+          <Property Name="Date_retour" Type="datetime" Nullable="false" />
+          <Property Name="Montant" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Id_Loc" Type="int" Nullable="false" />
+          <Property Name="Id_Voit" Type="int" Nullable="false" />
+          <Property Name="Emplacement_Prise" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Emplacement_Retour" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voiture">
+          <Key>
+            <PropertyRef Name="Id_Voiture" />
+          </Key>
+          <Property Name="Id_Voiture" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marque" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Couleur" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Annee" Type="int" />
+          <Property Name="Id_Prop" Type="int" Nullable="false" />
+          <Property Name="Prix" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Promotion" Type="smallint" />
+          <Property Name="Image_Voiture" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Reservation_Locataire">
+          <End Role="Locataire" Type="Self.Locataire" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locataire">
+              <PropertyRef Name="Id_Locataire" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Id_Loc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Voiture">
+          <End Role="Voiture" Type="Self.Voiture" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voiture">
+              <PropertyRef Name="Id_Voiture" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Id_Voit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voiture_Proprietaire">
+          <End Role="Proprietaire" Type="Self.Proprietaire" Multiplicity="1" />
+          <End Role="Voiture" Type="Self.Voiture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proprietaire">
+              <PropertyRef Name="Id_Proprietaire" />
+            </Principal>
+            <Dependent Role="Voiture">
+              <PropertyRef Name="Id_Prop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LocationDeVoituresModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locataire" EntityType="Self.Locataire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proprietaire" EntityType="Self.Proprietaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voiture" EntityType="Self.Voiture" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Reservation_Locataire" Association="Self.FK_Reservation_Locataire">
+            <End Role="Locataire" EntitySet="Locataire" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Voiture" Association="Self.FK_Reservation_Voiture">
+            <End Role="Voiture" EntitySet="Voiture" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voiture_Proprietaire" Association="Self.FK_Voiture_Proprietaire">
+            <End Role="Proprietaire" EntitySet="Proprietaire" />
+            <End Role="Voiture" EntitySet="Voiture" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LocationDeVoituresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id_Admin" />
+          </Key>
+          <Property Name="Id_Admin" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Locataire">
+          <Key>
+            <PropertyRef Name="Id_Locataire" />
+          </Key>
+          <Property Name="Id_Locataire" Type="Int32" Nullable="false" />
+          <Property Name="Email_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone_number_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresse_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cin_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Permis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="image_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Locataire" FromRole="Locataire" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="Proprietaire">
+          <Key>
+            <PropertyRef Name="Id_Proprietaire" />
+          </Key>
+          <Property Name="Id_Proprietaire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone_number_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresse_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Voiture" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Proprietaire" ToRole="Voiture" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id_Reservation" />
+          </Key>
+          <Property Name="Id_Reservation" Type="Int32" Nullable="false" />
+          <Property Name="Date_Reservation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date_retour" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Montant" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Id_Loc" Type="Int32" Nullable="false" />
+          <Property Name="Id_Voit" Type="Int32" Nullable="false" />
+          <Property Name="Emplacement_Prise" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Emplacement_Retour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Locataire" Relationship="Self.FK_Reservation_Locataire" FromRole="Reservation" ToRole="Locataire" />
+          <NavigationProperty Name="Voiture" Relationship="Self.FK_Reservation_Voiture" FromRole="Reservation" ToRole="Voiture" />
+        </EntityType>
+        <EntityType Name="Voiture">
+          <Key>
+            <PropertyRef Name="Id_Voiture" />
+          </Key>
+          <Property Name="Id_Voiture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marque" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Couleur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Annee" Type="Int32" />
+          <Property Name="Id_Prop" Type="Int32" Nullable="false" />
+          <Property Name="Prix" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Promotion" Type="Int16" />
+          <Property Name="Image_Voiture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Proprietaire" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Voiture" ToRole="Proprietaire" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Voiture" FromRole="Voiture" ToRole="Reservation" />
+        </EntityType>
+        <Association Name="FK_Reservation_Locataire">
+          <End Role="Locataire" Type="Self.Locataire" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locataire">
+              <PropertyRef Name="Id_Locataire" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Id_Loc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voiture_Proprietaire">
+          <End Role="Proprietaire" Type="Self.Proprietaire" Multiplicity="1" />
+          <End Role="Voiture" Type="Self.Voiture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proprietaire">
+              <PropertyRef Name="Id_Proprietaire" />
+            </Principal>
+            <Dependent Role="Voiture">
+              <PropertyRef Name="Id_Prop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Voiture">
+          <End Role="Voiture" Type="Self.Voiture" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voiture">
+              <PropertyRef Name="Id_Voiture" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Id_Voit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LocationDeVoituresEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Locataire" EntityType="Self.Locataire" />
+          <EntitySet Name="Proprietaire" EntityType="Self.Proprietaire" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+          <EntitySet Name="Voiture" EntityType="Self.Voiture" />
+          <AssociationSet Name="FK_Reservation_Locataire" Association="Self.FK_Reservation_Locataire">
+            <End Role="Locataire" EntitySet="Locataire" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voiture_Proprietaire" Association="Self.FK_Voiture_Proprietaire">
+            <End Role="Proprietaire" EntitySet="Proprietaire" />
+            <End Role="Voiture" EntitySet="Voiture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Voiture" Association="Self.FK_Reservation_Voiture">
+            <End Role="Voiture" EntitySet="Voiture" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LocationDeVoituresModelStoreContainer" CdmEntityContainer="LocationDeVoituresEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="LocationDeVoituresModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id_Admin" ColumnName="Id_Admin" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locataire">
+            <EntityTypeMapping TypeName="LocationDeVoituresModel.Locataire">
+              <MappingFragment StoreEntitySet="Locataire">
+                <ScalarProperty Name="Id_Locataire" ColumnName="Id_Locataire" />
+                <ScalarProperty Name="Email_Loc" ColumnName="Email_Loc" />
+                <ScalarProperty Name="Password_Loc" ColumnName="Password_Loc" />
+                <ScalarProperty Name="Phone_number_Loc" ColumnName="Phone_number_Loc" />
+                <ScalarProperty Name="Adresse_Loc" ColumnName="Adresse_Loc" />
+                <ScalarProperty Name="Name_Loc" ColumnName="Name_Loc" />
+                <ScalarProperty Name="Cin_Loc" ColumnName="Cin_Loc" />
+                <ScalarProperty Name="Permis" ColumnName="Permis" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="image_Loc" ColumnName="image_Loc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proprietaire">
+            <EntityTypeMapping TypeName="LocationDeVoituresModel.Proprietaire">
+              <MappingFragment StoreEntitySet="Proprietaire">
+                <ScalarProperty Name="Id_Proprietaire" ColumnName="Id_Proprietaire" />
+                <ScalarProperty Name="Name_Prop" ColumnName="Name_Prop" />
+                <ScalarProperty Name="Email_Prop" ColumnName="Email_Prop" />
+                <ScalarProperty Name="Password_Prop" ColumnName="Password_Prop" />
+                <ScalarProperty Name="Phone_number_Prop" ColumnName="Phone_number_Prop" />
+                <ScalarProperty Name="Adresse_Prop" ColumnName="Adresse_Prop" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Image_Prop" ColumnName="Image_Prop" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservation">
+            <EntityTypeMapping TypeName="LocationDeVoituresModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Id_Reservation" ColumnName="Id_Reservation" />
+                <ScalarProperty Name="Date_Reservation" ColumnName="Date_Reservation" />
+                <ScalarProperty Name="Date_retour" ColumnName="Date_retour" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+                <ScalarProperty Name="Id_Loc" ColumnName="Id_Loc" />
+                <ScalarProperty Name="Id_Voit" ColumnName="Id_Voit" />
+                <ScalarProperty Name="Emplacement_Prise" ColumnName="Emplacement_Prise" />
+                <ScalarProperty Name="Emplacement_Retour" ColumnName="Emplacement_Retour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voiture">
+            <EntityTypeMapping TypeName="LocationDeVoituresModel.Voiture">
+              <MappingFragment StoreEntitySet="Voiture">
+                <ScalarProperty Name="Id_Voiture" ColumnName="Id_Voiture" />
+                <ScalarProperty Name="Marque" ColumnName="Marque" />
+                <ScalarProperty Name="Couleur" ColumnName="Couleur" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+                <ScalarProperty Name="Id_Prop" ColumnName="Id_Prop" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Promotion" ColumnName="Promotion" />
+                <ScalarProperty Name="Image_Voiture" ColumnName="Image_Voiture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
