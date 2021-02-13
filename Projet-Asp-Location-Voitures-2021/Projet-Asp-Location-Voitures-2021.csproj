@@ -104,9 +104,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\heroic-features.css" />
+    <Content Include="css\main.css" />
+    <Content Include="css\main.min.css" />
     <Content Include="css\owl.carousel.min.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
+    <Content Include="css\shop-item.css" />
     <Content Include="css\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\icomoon\demo-files\demo.css" />
@@ -116,7 +119,9 @@
     <Content Include="fonts\icomoon\Read Me.txt" />
     <Content Include="fonts\icomoon\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\bg-edit-car.jpg" />
     <Content Include="images\bg_1.jpg" />
+    <Content Include="images\edit.png" />
     <Content Include="images\lamborghinibackground.png" />
     <Content Include="images\man.jpeg" />
     <Content Include="images\avatar.jpeg" />
@@ -126,6 +131,7 @@
     <Content Include="js\demo\chart-bar-demo.js" />
     <Content Include="js\demo\chart-pie-demo.js" />
     <Content Include="js\demo\datatables-demo.js" />
+    <Content Include="js\global.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="js\main.js" />
     <Content Include="js\owl.carousel.min.js" />
@@ -206,6 +212,10 @@
     <Content Include="vendor\datatables\dataTables.bootstrap4.min.js" />
     <Content Include="vendor\datatables\jquery.dataTables.js" />
     <Content Include="vendor\datatables\jquery.dataTables.min.js" />
+    <Content Include="vendor\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="vendor\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="vendor\font-awesome-4.7\HELP-US-OUT.txt" />
     <Content Include="vendor\fontawesome-free\attribution.js" />
     <Content Include="vendor\fontawesome-free\css\all.css" />
     <Content Include="vendor\fontawesome-free\css\all.min.css" />
@@ -1861,6 +1871,11 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="vendor\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="vendor\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="vendor\select2\select2.min.css" />
+    <Content Include="vendor\select2\select2.min.js" />
     <Content Include="Web.config" />
     <Content Include="scss\navs\_global.scss" />
     <Content Include="scss\navs\_sidebar.scss" />
@@ -2185,6 +2200,15 @@
     <Content Include="scss\bootstrap\_utilities.scss" />
     <Content Include="scss\bootstrap\_variables.scss" />
     <Content Include="scss\style.scss" />
+    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -13,10 +13,10 @@
         <h1 class="display-4">
             @if (Session["NameProp"] != null)
             {<text>
-                    Welcome @Session["NameProp"].ToString() </text>
+                    Bienvenue @Session["NameProp"].ToString() </text>
         }
             </h1>
-        <p class="lead">We are happy to work with you !</p>
+        <p class="lead">Nous sommes fières de travailler avec vous ! </p>
     </div>
 </div>
 
@@ -40,6 +40,32 @@
         .card {
             margin: 15px;
         }
+     .btn
+     {
+         width:auto;
+     }
+        .parent-style-one a {
+            text-decoration: none;
+            color:white;
+           padding:20px;
+        }
+        .parent-style-one
+        {
+            margin-top:20px;
+            background-color:blue;
+        }
+        .parent-style-two a {
+            text-decoration: none;
+            color: white;
+            padding: 20px;
+        }
+        .parent-style-two {
+            margin-top: 20px;
+            background-color: red;
+        }
+        
+
+       
     </style>
 </head>
 <div class="row">
@@ -53,11 +79,24 @@
                 <h5 class="card-title"> @item.Marque</h5>
                 <p class="card-text">  @item.Prix dhs </p>
                 <p class="card-text">@item.Couleur</p>
-                <p>@Html.ActionLink("Edit", "Edit", new { id = item.Id_Voiture })</p>
-                <p>  @Html.ActionLink("Delete", "Delete", new { id = item.Id_Voiture })</p>
-                <a href="#" class="btn btn-success">More Details</a>
-              
-            </div>
+
+
+
+                <div>
+                    <a href="#" class="btn btn-success">More Details</a>
+                </div>
+                        <br/>
+                     
+                    <span class="parent-style-one">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id_Voiture })
+
+                    </span>
+                  
+                    <span class="parent-style-two">
+                          @Html.ActionLink("Delete", "Delete", new { id = item.Id_Voiture })
+                    </span>
+
+                </div>
         </div>
 
 

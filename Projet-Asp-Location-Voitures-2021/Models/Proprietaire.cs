@@ -23,7 +23,7 @@ namespace Projet_Asp_Location_Voitures_2021.Models
 
         [Display(Name = "ID :")]
         public int Id_Proprietaire { get; set; }
-        [Display(Name = "Name :")]
+        [Display(Name = "Nom du propriétaire:")]
         public string Name_Prop { get; set; }
         [Required]
         [Display(Name = "Email :")]

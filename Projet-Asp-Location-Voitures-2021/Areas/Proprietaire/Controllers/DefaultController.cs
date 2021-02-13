@@ -102,7 +102,7 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
                 {
                     db.Entry(voiture).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Userdashboard");
+                    return RedirectToAction("UserDashboard");
                 }
                 return View(voiture);
             }
