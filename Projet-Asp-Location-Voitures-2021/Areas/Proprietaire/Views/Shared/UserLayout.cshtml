@@ -41,13 +41,13 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profil</a>
+                        <a class="nav-link" href="@Url.Action("EditProfil", "Default",new { id=Session["PropID"]})">Profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Login", "Default")">Se déconnecter</a>
                     </li>
 
-
+               
                 </ul>
             </div>
         </div>

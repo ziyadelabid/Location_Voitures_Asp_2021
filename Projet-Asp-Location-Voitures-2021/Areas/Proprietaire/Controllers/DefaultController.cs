@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,11 +18,23 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Models.Proprietaire obj)
+        public ActionResult Index(Models.Proprietaire obj, HttpPostedFileBase postedFile)
         {
             if (ModelState.IsValid)
             {
+                string fileName = System.IO.Path.GetFileName(postedFile.FileName);
                
+                //Set the Image File Path.
+                var filePath=  Path.Combine(Server.MapPath("~/images"), fileName);
+                
+
+                //Save the Image File in Folder.
+                postedFile.SaveAs(filePath);
+
+                //Insert the Image File details in Table.
+                LocationDeVoituresEntities entities = new LocationDeVoituresEntities();
+                obj.Image_Name = fileName;
+                obj.Image_Prop = filePath;
                 db.Proprietaire.Add(obj);
                 db.SaveChanges();
               
@@ -29,8 +42,9 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
             return RedirectToAction("Login", "Default");
 
         }
+      
 
-        public ActionResult Login()
+    public ActionResult Login()
         {
             return View();
         }
@@ -140,6 +154,42 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
             }
             return RedirectToAction("Login");
         }
-        
+        //Edit Profil du proprietaire
+        public ActionResult EditProfil(int? id)
+        {
+            if (Session["PropID"] != null)
+            {
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Models.Proprietaire proprietaire = db.Proprietaire.Find(id);
+                if (proprietaire == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(proprietaire);
+            }
+            return RedirectToAction("Login");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfil([Bind(Include = "Id_Proprietaire,Name_Prop,Email_Prop,Password_Prop,Phone_number_Prop,Adresse_Prop,Image_Prop,Role,Type,Image_Name")] Models.Proprietaire proprietaire)
+        {
+
+            if (Session["PropID"] != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(proprietaire).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("UserDashboard");
+                }
+                return View(proprietaire);
+            }
+            return RedirectToAction("Login");
+        }
+
     }
 }

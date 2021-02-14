@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\ziy.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -120,12 +121,9 @@
     <Content Include="fonts\icomoon\style.css" />
     <Content Include="Global.asax" />
     <Content Include="images\bg-edit-car.jpg" />
-    <Content Include="images\bg_1.jpg" />
     <Content Include="images\edit.png" />
     <Content Include="images\lamborghinibackground.png" />
-    <Content Include="images\man.jpeg" />
     <Content Include="images\avatar.jpeg" />
-    <Content Include="images\background_login.jpeg" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\demo\chart-area-demo.js" />
     <Content Include="js\demo\chart-bar-demo.js" />
@@ -152,7 +150,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
-    <Content Include="Areas\Proprietaire\Views\web.config" />
+    <Content Include="Areas\Proprietaire\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Proprietaire\Views\Default\Index.cshtml" />
     <Content Include="Areas\Proprietaire\Views\Default\Login.cshtml" />
     <Content Include="Areas\Proprietaire\Views\Default\UserDashBoard.cshtml" />
@@ -176,6 +176,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Proprietaire\Views\Default\EditProfil.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2217,7 +2218,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\pictures\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Locataire\Controllers\" />
     <Folder Include="Areas\Locataire\Models\" />

@@ -20,6 +20,8 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         {
             this.Reservation = new HashSet<Reservation>();
         }
+
+
         [Display(Name = "ID :")]
         public int Id_Voiture { get; set; }
         [Display(Name = "Marque :")]
@@ -27,15 +29,18 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         [Display(Name = "Couleur :")]
         public string Couleur { get; set; }
         [Display(Name = "Année :")]
-        public Nullable<int> Annee { get; set; }
+        public Nullable<int>Annee { get; set; }
         [Display(Name = "ID :")]
         public int Id_Prop { get; set; }
         [Display(Name = "Prix :")]
         public decimal Prix { get; set; }
         [Display(Name = "Promotion :")]
-        public Nullable<short> Promotion { get; set; }
+        public Nullable<short>
+            Promotion
+        { get; set; }
         public string Image_Voiture { get; set; }
-    
+
+
         public virtual Proprietaire Proprietaire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservation { get; set; }

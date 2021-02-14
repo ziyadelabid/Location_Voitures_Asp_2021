@@ -43,6 +43,7 @@
           <Property Name="Type" Type="nvarchar(max)" />
           <Property Name="Image_Prop" Type="nvarchar(max)" />
           <Property Name="Role" Type="nvarchar(max)" />
+          <Property Name="Image_Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
@@ -169,6 +170,7 @@
           <Property Name="Image_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Voiture" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Proprietaire" ToRole="Voiture" />
+          <Property Name="Image_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
@@ -291,6 +293,7 @@
           <EntitySetMapping Name="Proprietaire">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Proprietaire">
               <MappingFragment StoreEntitySet="Proprietaire">
+                <ScalarProperty Name="Image_Name" ColumnName="Image_Name" />
                 <ScalarProperty Name="Id_Proprietaire" ColumnName="Id_Proprietaire" />
                 <ScalarProperty Name="Name_Prop" ColumnName="Name_Prop" />
                 <ScalarProperty Name="Email_Prop" ColumnName="Email_Prop" />
