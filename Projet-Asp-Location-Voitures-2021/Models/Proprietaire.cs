@@ -41,7 +41,8 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         public string Role { get; set; }
 
         public string Image_Name { get; set; }
-    
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Voiture> Voiture { get; set; }
     }

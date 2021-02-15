@@ -35,6 +35,7 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
                 LocationDeVoituresEntities entities = new LocationDeVoituresEntities();
                 obj.Image_Name = fileName;
                 obj.Image_Prop = filePath;
+
                 db.Proprietaire.Add(obj);
                 db.SaveChanges();
               
@@ -42,9 +43,50 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
             return RedirectToAction("Login", "Default");
 
         }
-      
+        public ActionResult AddCar()
+        {
+            return View();
+        }
 
-    public ActionResult Login()
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCar([Bind(Include = "Id_Voiture,Marque,Couleur,Annee,Prix,Promotion,Image_Voiture,Carburant,Boite_Vitesse,Emplacement_Prise,Emplacement_Retour,Places,Portes,Image_Name")] Voiture voiture, HttpPostedFileBase imageVoiture)
+        {
+            if (Session["PropID"] != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    string fileName = System.IO.Path.GetFileName(imageVoiture.FileName);
+
+                    //Set the Image File Path.
+                    var filePath = Path.Combine(Server.MapPath("~/images"), fileName);
+
+
+                    //Save the Image File in Folder.
+                    imageVoiture.SaveAs(filePath);
+
+                    //Insert the Image File details in Table.
+                    LocationDeVoituresEntities entities = new LocationDeVoituresEntities();
+                    voiture.Image_Name = fileName;
+                    voiture.Image_Voiture = filePath;
+                    voiture.Id_Prop = Int32.Parse(Session["PropID"].ToString());
+                    db.Voiture.Add(voiture);
+                    db.SaveChanges();
+                    return RedirectToAction("UserDashboard");
+                }
+
+                return View(voiture);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+           
+        }
+
+
+        public ActionResult Login()
         {
             return View();
         }
@@ -107,7 +149,7 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_Voiture,Marque,Couleur,Annee,Id_Prop,Prix,Promotion,Image_Voiture")] Voiture voiture)
+        public ActionResult Edit([Bind(Include = "Id_Voiture,Marque,Couleur,Annee,Id_Prop,Prix,Promotion,Image_Voiture,Image_Name")] Voiture voiture)
         {
             
             if (Session["PropID"] != null)

@@ -1,5 +1,6 @@
 ﻿@model Projet_Asp_Location_Voitures_2021.Models.Voiture
-
+@{ Layout = "~/Areas/Proprietaire/Views/Shared/UserLayout.cshtml";
+}
 @{
     ViewBag.Title = "Delete";
 }
@@ -9,6 +10,10 @@
     <h4>Détails :</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dd>
+            <img src="@Url.Content("~/images/" + @Model.Image_Name)" width="300" />
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Marque)
         </dt>
@@ -49,13 +54,8 @@
             @Html.DisplayFor(model => model.Promotion)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image_Voiture)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image_Voiture)
-        </dd>
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Proprietaire.Name_Prop)
@@ -67,12 +67,13 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-danger" />
-          
+
         </div>
     }
 </div>

@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Modifier Voiture</title>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
@@ -62,30 +63,31 @@
         @Html.HiddenFor(model => model.Id_Voiture)
         @Html.HiddenFor(model => model.Image_Voiture)
         @Html.HiddenFor(model => model.Id_Prop)
-       
-            <div class="col-md-8">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img  class="rounded-circle" src="@Model.Image_Voiture"  width="400" height="300"></div>
-            </div>
-            <div class="col-md-8">
-                <div class="p-3 py-5">
-                    
-                    <div class="row mt-2">
-                        <div class="col-md-6">@Html.EditorFor(model => model.Marque, new { htmlAttributes = new { @class = "form-control", placeholder = "Marque" } })</div>
-                        <div class="col-md-6">@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control", placeholder = "Prix" } })</div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">@Html.EditorFor(model => model.Couleur, new { htmlAttributes = new { @class = "form-control", placeholder = "Couleur" } })</div>
-                        <div class="col-md-6">@Html.EditorFor(model => model.Annee, new { htmlAttributes = new { @class = "form-control", placeholder = "Annee" } })</div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">@Html.EditorFor(model => model.Promotion, new { htmlAttributes = new { @class = "form-control", placeholder = "Promotion" } })</div>
-                   
-                    </div>
-                   
-                    <div class="mt-5 text-right"><input type="submit" value="Sauvegarder" class="btn btn-primary" /></div>
+        @Html.HiddenFor(model => model.Image_Name)
+
+        <div class="col-md-8">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle" src="@Url.Content("~/images/" + Model.Image_Name)" width="400" height="300"></div>
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 py-5">
+
+                <div class="row mt-2">
+                    <div class="col-md-6">@Html.EditorFor(model => model.Marque, new { htmlAttributes = new { @class = "form-control", placeholder = "Marque" } })</div>
+                    <div class="col-md-6">@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control", placeholder = "Prix" } })</div>
                 </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">@Html.EditorFor(model => model.Couleur, new { htmlAttributes = new { @class = "form-control", placeholder = "Couleur" } })</div>
+                    <div class="col-md-6">@Html.EditorFor(model => model.Annee, new { htmlAttributes = new { @class = "form-control", placeholder = "Annee" } })</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">@Html.EditorFor(model => model.Promotion, new { htmlAttributes = new { @class = "form-control", placeholder = "Promotion" } })</div>
+
+                </div>
+
+                <div class="mt-5 text-right"><input type="submit" value="Sauvegarder" class="btn btn-primary" /></div>
             </div>
         </div>
+    </div>
     }
     </body>
 </html>

@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Profil </title>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
@@ -45,6 +46,10 @@
             color: #682773;
             cursor: pointer
         }
+
+        .rounded-circle {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -67,21 +72,21 @@
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
 
-                        <h6 class="text-left">Edit Profile</h6>
+                        <h6 class="text-left">Détails du profil :</h6>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6">@Html.EditorFor(model => model.Name_Prop, new { htmlAttributes = new { @class = "form-control" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Name_Prop, new { htmlAttributes = new { @class = "form-control" ,placeholder="Nom Complet"} })</div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6"> @Html.EditorFor(model => model.Email_Prop, new { htmlAttributes = new { @class = "form-control" } })</div>
-                        <div class="col-md-6">@Html.EditorFor(model => model.Password_Prop, new { htmlAttributes = new { @class = "form-control" } })</div>
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Email_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Password_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })</div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6">@Html.EditorFor(model => model.Phone_number_Prop, new { htmlAttributes = new { @class = "form-control" } })</div>
-                        <div class="col-md-6"> @Html.EditorFor(model => model.Adresse_Prop, new { htmlAttributes = new { @class = "form-control" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Phone_number_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Tél" } })</div>
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Adresse_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Adresse" } })</div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6">@Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", placeholder = "Statut" } })</div>
 
                     </div>
                     <div class="mt-5 text-right"><input type="submit" value="Sauvegarder" class="btn btn-primary" /></div>
