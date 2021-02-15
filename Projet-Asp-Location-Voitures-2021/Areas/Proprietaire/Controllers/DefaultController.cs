@@ -149,7 +149,7 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_Voiture,Marque,Couleur,Annee,Id_Prop,Prix,Promotion,Image_Voiture,Image_Name")] Voiture voiture)
+        public ActionResult Edit([Bind(Include = "Id_Voiture,Marque,Couleur,Annee,Id_Prop,Prix,Promotion,Image_Voiture,Image_Name,Carburant,Boite_Vitesse,Emplacement_Prise,Emplacement_Retour,Places,Portes")] Voiture voiture)
         {
             
             if (Session["PropID"] != null)

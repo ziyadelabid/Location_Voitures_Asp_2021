@@ -7,19 +7,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Modifier Voiture</title>
+    <title>Profil </title>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <style>
         body {
-            
-            background-position: center;
-          background-repeat: repeat-y; 
-            background-size: cover;
-            background-image: url("/images/bg-edit-car.jpg");
-            height: 100vh;
+            background: #BA68C8
         }
 
         .form-control:focus {
@@ -51,44 +46,77 @@
             color: #682773;
             cursor: pointer
         }
-      
+
+        .rounded-circle {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-    <div class="container col-md-10 col-md-offset-1">
+    <div class="container rounded bg-white mt-5">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id_Voiture)
         @Html.HiddenFor(model => model.Image_Voiture)
         @Html.HiddenFor(model => model.Id_Prop)
         @Html.HiddenFor(model => model.Image_Name)
+        @Html.HiddenFor(model => model.Carburant)
+        @Html.HiddenFor(model => model.Places)
+        @Html.HiddenFor(model => model.Portes)
+        @Html.HiddenFor(model => model.Emplacement_Prise)
+        @Html.HiddenFor(model => model.Emplacement_Retour)
+        @Html.HiddenFor(model => model.Boite_Vitesse)
 
-        <div class="col-md-8">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle" src="@Url.Content("~/images/" + Model.Image_Name)" width="400" height="300"></div>
-        </div>
-        <div class="col-md-8">
-            <div class="p-3 py-5">
 
-                <div class="row mt-2">
-                    <div class="col-md-6">@Html.EditorFor(model => model.Marque, new { htmlAttributes = new { @class = "form-control", placeholder = "Marque" } })</div>
-                    <div class="col-md-6">@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control", placeholder = "Prix" } })</div>
+        <div class="row">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="@Url.Content("~/images/" + @Model.Image_Name)" width="300"><span class="font-weight-bold">@Model.Marque</span><span class="text-black-50">@Model.Carburant</span></div>
+            </div>
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <h6 class="text-left">Détails :</h6>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">@Html.EditorFor(model => model.Marque, new { htmlAttributes = new { @class = "form-control", placeholder = "Marque" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control", placeholder = "Prix" } })</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Couleur, new { htmlAttributes = new { @class = "form-control", placeholder = "Couleur" } })</div>
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Annee, new { htmlAttributes = new { @class = "form-control", placeholder = "Annee" } })</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">@Html.EditorFor(model => model.Carburant, new { htmlAttributes = new { @class = "form-control", placeholder = "Carburant" } })</div>
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Boite_Vitesse, new { htmlAttributes = new { @class = "form-control", placeholder = "Boite Vitesse" } })</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">@Html.EditorFor(model => model.Emplacement_Prise, new { htmlAttributes = new { @class = "form-control", placeholder = "Emplacement de prise" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Emplacement_Retour, new { htmlAttributes = new { @class = "form-control", placeholder = "Emplacement du retour" } })</div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">@Html.EditorFor(model => model.Places, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre de places" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Portes, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre de portes" } })</div>
+
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">@Html.EditorFor(model => model.Promotion, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre de places" } })</div>
+                     
+
+
+                    </div>
+                    <div class="mt-5 text-right"><input type="submit" value="Sauvegarder" class="btn btn-primary" /></div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">@Html.EditorFor(model => model.Couleur, new { htmlAttributes = new { @class = "form-control", placeholder = "Couleur" } })</div>
-                    <div class="col-md-6">@Html.EditorFor(model => model.Annee, new { htmlAttributes = new { @class = "form-control", placeholder = "Annee" } })</div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">@Html.EditorFor(model => model.Promotion, new { htmlAttributes = new { @class = "form-control", placeholder = "Promotion" } })</div>
-
-                </div>
-
-                <div class="mt-5 text-right"><input type="submit" value="Sauvegarder" class="btn btn-primary" /></div>
             </div>
         </div>
     </div>
+
     }
-    </body>
+
+</body>
+
 </html>
-   

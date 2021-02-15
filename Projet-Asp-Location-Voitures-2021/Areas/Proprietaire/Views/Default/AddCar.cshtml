@@ -67,62 +67,68 @@
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <h6 class="text-left">Détails du profil :</h6>
+                    <h6 class="text-left">Coordonnées de la voiture :</h6>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6">@Html.EditorFor(model => model.Marque, new { htmlAttributes = new { @class = "form-control",placeholder = "Marque" } })</div>
+                    <div class="col-md-6">@Html.EditorFor(model => model.Marque, new { htmlAttributes = new { @class = "form-control", placeholder = "Marque" } })</div>
                     <div class="col-md-6">@Html.EditorFor(model => model.Couleur, new { htmlAttributes = new { @class = "form-control", placeholder = "Couleur" } })</div>
                 </div>
+                     
                 <div class="row mt-3">
-                    <div class="col-md-6"> @Html.EditorFor(model => model.Annee, new { htmlAttributes = new { @class = "form-control" }, placeholder = "Année" })</div>
-                    <div class="col-md-6">@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control", placeholder = "Prix" } })</div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6"> @Html.EditorFor(model => model.Promotion, new { htmlAttributes = new { @class = "form-control", placeholder = "Promotion (Optional)" } })</div>
-                    <div class="col-md-6">
-                        <label>Carburant :</label>
-                        <label class="radio-container m-r-55">
-                            Gazoil
-                            @Html.RadioButtonFor(model => model.Carburant, "Gazoil")
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="radio-container">
-                            Essence
-                            @Html.RadioButtonFor(model => model.Carburant, "Essence")
-                            <span class="checkmark"></span>
-                        </label>
+                    <div class="col-md-2">
+                        <label class="text-center">Année du modèle :</label>
+                        </div>
+                        <div class="col-md-4">@Html.EditorFor(model => model.Annee, new { htmlAttributes = new { @class = "form-control" }, placeholder = "Année" })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control", placeholder = "Prix" } })</div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">@Html.EditorFor(model => model.Places, new { htmlAttributes = new { @class = "form-control", placeholder = "Num de Places" } })</div>
-                    <div class="col-md-6"> @Html.EditorFor(model => model.Portes, new { htmlAttributes = new { @class = "form-control", placeholder = "Num de Portes" } })</div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">@Html.EditorFor(model => model.Emplacement_Prise, new { htmlAttributes = new { @class = "form-control", placeholder = "Emplacement de prise" } })</div>
-                    <div class="col-md-6"> @Html.EditorFor(model => model.Emplacement_Retour, new { htmlAttributes = new { @class = "form-control", placeholder = "Emplacement de retour" } })</div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <label>Boîte Vitesse :</label>
-                        <label class="radio-container m-r-55">
-                            Auto
-                            @Html.RadioButtonFor(model => model.Boite_Vitesse, "Auto")
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="radio-container">
-                            Manuelle
-                            @Html.RadioButtonFor(model => model.Boite_Vitesse, "Mannuelle")
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="form-group">
-                        <div class="editor-field">
-                            <label class="label label--block">Télécharger L'image de la voiture :</label>
-                            <input type="file" name="imageVoiture" />
+                    <div class="row mt-3">
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Promotion, new { htmlAttributes = new { @class = "form-control", placeholder = "Promotion (Optional)" } })</div>
+                        <div class="col-md-6">
+                            <label>Carburant :</label>
+                            <label class="radio-container m-r-55">
+                                Gazoil
+                                @Html.RadioButtonFor(model => model.Carburant, "Gazoil")
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-container">
+                                Essence
+                                @Html.RadioButtonFor(model => model.Carburant, "Essence")
+                                <span class="checkmark"></span>
+                            </label>
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">@Html.EditorFor(model => model.Places, new { htmlAttributes = new { @class = "form-control", placeholder = "Num de Places" } })</div>
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Portes, new { htmlAttributes = new { @class = "form-control", placeholder = "Num de Portes" } })</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">@Html.EditorFor(model => model.Emplacement_Prise, new { htmlAttributes = new { @class = "form-control", placeholder = "Emplacement de prise" } })</div>
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Emplacement_Retour, new { htmlAttributes = new { @class = "form-control", placeholder = "Emplacement de retour" } })</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label>Boîte Vitesse :</label>
+                            <label class="radio-container m-r-55">
+                                Auto
+                                @Html.RadioButtonFor(model => model.Boite_Vitesse, "Auto")
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-container">
+                                Manuelle
+                                @Html.RadioButtonFor(model => model.Boite_Vitesse, "Mannuelle")
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+
+                            <div class="editor-field">
+                                <label class="label label--block">Télécharger L'image de la voiture :</label>
+                                <input type="file" name="imageVoiture" />
+                            </div>
+
+                        </div>
                     </div>
                     <div class="mt-5 text-right"><input type="submit" value="Ajouter" class="btn btn-primary" /></div>
                 </div>
