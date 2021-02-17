@@ -97,6 +97,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\bgcar.jfif" />
+    <Content Include="images\car.jfif" />
+    <Content Include="images\edit.jpg" />
+    <Content Include="images\gd.jfif" />
+    <Content Include="images\profilbg.jpg" />
+    <Content Include="images\trash.png" />
+    <Content Include="images\yellowcar.jfif" />
     <Content Include="images\ziy.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

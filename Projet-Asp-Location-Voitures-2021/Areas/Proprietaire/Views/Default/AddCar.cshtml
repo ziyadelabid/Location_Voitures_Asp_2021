@@ -13,7 +13,11 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <style>
         body {
-            background: #BA68C8
+            background-position: center;
+            /* Center the image */ background-repeat: repeat-y; /* Do not repeat the image */
+            background-size: cover;
+            background-image: url("/images/profilbg.jpg");
+            height: 100vh;
         }
 
         .form-control:focus {
@@ -86,8 +90,8 @@
                         <div class="col-md-6">
                             <label>Carburant :</label>
                             <label class="radio-container m-r-55">
-                                Gazoil
-                                @Html.RadioButtonFor(model => model.Carburant, "Gazoil")
+                                Diesel
+                                @Html.RadioButtonFor(model => model.Carburant, "Diesel")
                                 <span class="checkmark"></span>
                             </label>
                             <label class="radio-container">

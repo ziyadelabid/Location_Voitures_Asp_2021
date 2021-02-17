@@ -4,76 +4,179 @@
 @{
     ViewBag.Title = "Delete";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-position: center;
+            /* Center the image */ background-repeat: repeat-y; /* Do not repeat the image */
+            background-size: cover;
+            background-image: url("/images/profilbg.jpg");
+            height: 100vh;
+        }
 
-<h4>Est ce que vous êtes sùr que vous voulez retirer cette voiture ?</h4>
-<div>
-    <h4>Détails :</h4>
-    <hr />
-    <dl class="dl-horizontal">
+.containero {
 
-        <dd>
-            <img src="@Url.Content("~/images/" + @Model.Image_Name)" width="300" />
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Marque)
-        </dt>
+    background: #fff !important;
+    border: none;
+    border-radius: none;
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Marque)
-        </dd>
+.abc {
+    padding-left: 40px
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Couleur)
-        </dt>
+.pqr {
+    padding-right: 70px;
+    padding-top: 14px
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Couleur)
-        </dd>
+.para {
+    float: right;
+    margin-right: 0;
+    padding-left: 80%;
+    top: 0
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Annee)
-        </dt>
+.fa-star {
+    color: yellow
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Annee)
-        </dd>
+li {
+    list-style: none;
+    line-height: 50px;
+    color: #000
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Prix)
-        </dt>
+.col-md-2 {
+    padding-bottom: 20px;
+    font-weight: bold
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Prix)
-        </dd>
+.col-md-2 a {
+    text-decoration: none;
+    color: #000
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Promotion)
-        </dt>
+.col-md-2.mio {
+    font-size: 12px;
+    padding-top: 7px
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Promotion)
-        </dd>
+.des::after {
+    content: '.';
+    font-size: 0;
+    display: block;
+    border-radius: 20px;
+    height: 6px;
+    width: 55%;
+    background: yellow;
+    margin: 14px 0
+}
 
+.r4 {
+    padding-left: 25px
+}
 
+.btn-outline-warning {
+    border-radius: 0;
+    border: 2px solid yellow;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    width: 70%
+}
 
+@@media screen and (max-width: 620px) {
+    .containero {
+        width: 98%;
+        display: flex;
+        flex-flow: column;
+        text-align: center
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Proprietaire.Name_Prop)
-        </dt>
+    .des::after {
+        content: '.';
+        font-size: 0;
+        display: block;
+        border-radius: 20px;
+        height: 6px;
+        width: 35%;
+        background: yellow;
+        margin: 10px auto
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.Proprietaire.Name_Prop)
-        </dd>
+    .pqr {
+        text-align: center;
+        margin: 0 30px
+    }
 
-    </dl>
+    .para {
+        text-align: center;
+        padding-left: 90px;
+        padding-top: 10px
+    }
+
+    .klo {
+        display: flex;
+        text-align: center;
+        margin: 0 auto;
+        margin-right: 40px
+    }
+}
+#BtnDelete
+{
+    margin-left:30px;
+}
+    </style>
+</head>
+<body>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" />
-
+    <div class="containero py-4 my-4 mx-auto d-flex flex-column">
+        <div class="header">
+            <div class="row r1">
+                <div class="col-md-9 abc">
+                    <h1>@Html.DisplayFor(model => model.Marque)</h1>
+                </div>
+              
+            </div>
         </div>
+        <div class="container-body mt-4">
+            <div class="row r3">
+                <div class="col-md-5 p-0 klo">
+                    <ul>
+                        <li>Couleur : @Html.DisplayFor(model => model.Couleur)</li>
+                        <li>Année du modèle :@Html.DisplayFor(model => model.Annee)</li>
+                        <li>Prix : @Html.DisplayFor(model => model.Prix) Dhs</li>
+                        <li>Carburant :@Html.DisplayFor(model => model.Carburant)</li>
+                        <li>Boîte vitesse @Html.DisplayFor(model => model.Boite_Vitesse)</li>
+                        <li>Nombre de places  :@Html.DisplayFor(model => model.Places)</li>
+                        <li>Nombre de portes :@Html.DisplayFor(model => model.Portes)</li>
+                    </ul>
+                    <div class="form-actions no-color align-content-center" id="BtnDelete">
+                        <input type="submit" value="Confirmer la retiration" class="btn btn-danger" />
+
+                    </div>
+                </div>
+                <div class="col-md-7"> <img src="@Url.Content("~/images/" + @Model.Image_Name)" width="450"> </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+       
     }
-</div>
+
+
+</body>
+</html>
