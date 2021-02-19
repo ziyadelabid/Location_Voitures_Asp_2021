@@ -9,5 +9,61 @@
 
 
 
- 
 
+
+   [Display(Name = "ID :")]
+        public int Id_Voiture { get; set; }
+        [Display(Name = "Marque :")]
+        public string Marque { get; set; }
+        [Display(Name = "Couleur :")]
+        public string Couleur { get; set; }
+        [Display(Name = "Année :")]
+        public Nullable<int>
+    Annee
+    { get; set; }
+    [Display(Name = "ID :")]
+    public int Id_Prop { get; set; }
+    [Display(Name = "Prix :")]
+    public decimal Prix { get; set; }
+    [Display(Name = "Promotion :")]
+    public Nullable<short>
+        Promotion
+        { get; set; }
+        public string Image_Voiture { get; set; }
+        [Display(Name = "Carburant :")]
+        public string Carburant { get; set; }
+        [Display(Name = "Boite Vitesse :")]
+        public string Boite_Vitesse { get; set; }
+        [Display(Name = "Emplacement de Prise :")]
+        public string Emplacement_Prise { get; set; }
+        [Display(Name = "Emplacement du retour :")]
+        public string Emplacement_Retour { get; set; }
+        public Nullable<short>
+            Places { get; set; }
+            public Nullable<short>
+    Portes { get; set; }
+    public string Image_Name { get; set; }
+
+
+
+
+    [Display(Name = "ID :")]
+    public int Id_Proprietaire { get; set; }
+    [Display(Name = "Nom du propriétaire:")]
+    public string Name_Prop { get; set; }
+    [Required]
+    [Display(Name = "Email :")]
+    public string Email_Prop { get; set; }
+    [Required(ErrorMessage = "Password is Required.")]
+    [Display(Name = "Password :")]
+    public string Password_Prop { get; set; }
+    [Display(Name = "Phone Number :")]
+    public string Phone_number_Prop { get; set; }
+    [Display(Name = "Adress :")]
+    public string Adresse_Prop { get; set; }
+    [Display(Name = "Status :")]
+    public string Type { get; set; }
+    public string Image_Prop { get; set; }
+    public string Role { get; set; }
+
+    public string Image_Name { get; set; }

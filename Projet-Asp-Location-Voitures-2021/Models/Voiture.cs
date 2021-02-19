@@ -11,8 +11,7 @@ namespace Projet_Asp_Location_Voitures_2021.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Voiture
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,37 +19,21 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         {
             this.Reservation = new HashSet<Reservation>();
         }
-
-
-        [Display(Name = "ID :")]
+    
         public int Id_Voiture { get; set; }
-        [Display(Name = "Marque :")]
         public string Marque { get; set; }
-        [Display(Name = "Couleur :")]
         public string Couleur { get; set; }
-        [Display(Name = "Année :")]
-        public Nullable<int>
-    Annee
-        { get; set; }
-        [Display(Name = "ID :")]
+        public Nullable<int> Annee { get; set; }
         public int Id_Prop { get; set; }
-        [Display(Name = "Prix :")]
         public decimal Prix { get; set; }
-        [Display(Name = "Promotion :")]
-        public Nullable<short>
-            Promotion
-        { get; set; }
+        public Nullable<short> Promotion { get; set; }
         public string Image_Voiture { get; set; }
-        [Display(Name = "Carburant :")]
         public string Carburant { get; set; }
-        [Display(Name = "Boite Vitesse :")]
         public string Boite_Vitesse { get; set; }
-        [Display(Name = "Emplacement de Prise :")]
         public string Emplacement_Prise { get; set; }
-        [Display(Name = "Emplacement du retour :")]
         public string Emplacement_Retour { get; set; }
-        public Nullable<short> Places { get; set; }
-        public Nullable<short> Portes { get; set; }
+        public short Places { get; set; }
+        public short Portes { get; set; }
         public string Image_Name { get; set; }
     
         public virtual Proprietaire Proprietaire { get; set; }

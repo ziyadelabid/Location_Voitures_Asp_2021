@@ -51,7 +51,7 @@
           </Key>
           <Property Name="Id_Reservation" Type="int" Nullable="false" />
           <Property Name="Date_Reservation" Type="datetime" Nullable="false" />
-          <Property Name="Date_retour" Type="datetime" Nullable="false" />
+          <Property Name="Date_Retour" Type="datetime" Nullable="false" />
           <Property Name="Montant" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Id_Loc" Type="int" Nullable="false" />
           <Property Name="Id_Voit" Type="int" Nullable="false" />
@@ -74,8 +74,8 @@
           <Property Name="Boite_Vitesse" Type="nvarchar(max)" />
           <Property Name="Emplacement_Prise" Type="nvarchar(max)" />
           <Property Name="Emplacement_Retour" Type="nvarchar(max)" />
-          <Property Name="Places" Type="smallint" />
-          <Property Name="Portes" Type="smallint" />
+          <Property Name="Places" Type="smallint" Nullable="false" />
+          <Property Name="Portes" Type="smallint" Nullable="false" />
           <Property Name="Image_Name" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Reservation_Locataire">
@@ -185,7 +185,6 @@
           </Key>
           <Property Name="Id_Reservation" Type="Int32" Nullable="false" />
           <Property Name="Date_Reservation" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Date_retour" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Montant" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Id_Loc" Type="Int32" Nullable="false" />
           <Property Name="Id_Voit" Type="Int32" Nullable="false" />
@@ -193,6 +192,7 @@
           <Property Name="Emplacement_Retour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Locataire" Relationship="Self.FK_Reservation_Locataire" FromRole="Reservation" ToRole="Locataire" />
           <NavigationProperty Name="Voiture" Relationship="Self.FK_Reservation_Voiture" FromRole="Reservation" ToRole="Voiture" />
+          <Property Name="Date_Retour" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Voiture">
           <Key>
@@ -212,8 +212,8 @@
           <Property Name="Boite_Vitesse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Emplacement_Prise" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Emplacement_Retour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Places" Type="Int16" />
-          <Property Name="Portes" Type="Int16" />
+          <Property Name="Places" Type="Int16" Nullable="false" />
+          <Property Name="Portes" Type="Int16" Nullable="false" />
           <Property Name="Image_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Reservation_Locataire">
@@ -323,9 +323,9 @@
           <EntitySetMapping Name="Reservation">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Date_Retour" ColumnName="Date_Retour" />
                 <ScalarProperty Name="Id_Reservation" ColumnName="Id_Reservation" />
                 <ScalarProperty Name="Date_Reservation" ColumnName="Date_Reservation" />
-                <ScalarProperty Name="Date_retour" ColumnName="Date_retour" />
                 <ScalarProperty Name="Montant" ColumnName="Montant" />
                 <ScalarProperty Name="Id_Loc" ColumnName="Id_Loc" />
                 <ScalarProperty Name="Id_Voit" ColumnName="Id_Voit" />
