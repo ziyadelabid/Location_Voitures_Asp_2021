@@ -1,0 +1,68 @@
+﻿@model Projet_Asp_Location_Voitures_2021.Models.Reclamation
+@{ Layout = "~/Areas/Proprietaire/Views/Shared/UserLayout.cshtml";
+}
+@{
+    ViewBag.Title = "AddReclamation";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,400,700'>
+    <style>
+        body {
+            
+            font-family: Lato, sans-serif;
+        }
+        .form-horizontal {
+            width: 100px;
+           height:100px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("AddReclamation", "Default", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+       
+      //7bess hna
+        <div class="form-horizontal">
+            <h4>Reclamation</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="form_message">Message *</label>
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Envoyer" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js'></script>
+</body>
+</html>
+
+
+

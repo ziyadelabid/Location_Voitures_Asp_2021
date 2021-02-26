@@ -146,12 +146,12 @@
                         <nav class="main_menu clearfix">
                             <ul class="ul_li_center clearfix">
                                 @*<li class="active has_child">
-                                        <a href="#!">Home</a>
-                                        <ul class="submenu">
-                                            <li><a href="index_1.html">Home Page V.1</a></li>
-                                            <li><a href="index_2.html">Home Page V.2</a></li>
-                                        </ul>
-                                    </li>*@
+            <a href="#!">Home</a>
+            <ul class="submenu">
+                <li><a href="index_1.html">Home Page V.1</a></li>
+                <li><a href="index_2.html">Home Page V.2</a></li>
+            </ul>
+        </li>*@
                                 <li><a class="nav-link" href="@Url.Action("Index", "List", new { Area = "Voitures" })">Acceuil</a></li>
                                 <li class="has_child">
                                     <a href="#!">Mes Voitures</a>
@@ -161,37 +161,46 @@
                                         <li><a href="@Url.Action("AddCar", "Default")">Nouvelle voiture</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="nav-link" href="@Url.Action("EditProfil", "Default",new { id=Session["PropID"]})">Profil</a></li>
-                                <li> <a class="nav-link" href="@Url.Action("Login", "Default")">Se déconnecter</a></li>
+                                <li class="has_child">
+                                    <a href="#!">Mon Espace</a>
+                                    <ul class="submenu">
+
+                                        <li><a href="@Url.Action("EditProfil", "Default",new { id=Session["PropID"]})">Profil</a></li>
+                                        <li><a href="@Url.Action("Login", "Default")">Se déconnecter</a></li>
+                                    </ul>
+                                </li>
+                               
+                                <li><a class="nav-link" href="@Url.Action("AddReclamation", "Default",new { id=Session["PropID"]})">Réclamer</a></li>
+                               
 
                                 @*<li><a href="review.html">Reviews</a></li>
-                                    <li><a href="about.html">About</a></li>*@
+        <li><a href="about.html">About</a></li>*@
                                 @*<li class="has_child">
-                                        <a href="#!">Pages</a>
-                                        <ul class="submenu">
-                                            <li><a href="service.html">Our Service</a></li>
-                                            <li><a href="gallery.html">Car Gallery</a></li>
-                                            <li><a href="account.html">My Account</a></li>
-                                            <li><a href="reservation.html">Reservation</a></li>
-                                            <li class="has_child">
-                                                <a href="#!">Blogs</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="blog_details.html">Blog Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has_child">
-                                                <a href="#!">Our Cars</a>
-                                                <ul class="submenu">
-                                                    <li><a href="car.html">Cars</a></li>
-                                                    <li><a href="car_details.html">Car Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="cart.html">Shopping Cart</a></li>
-                                            <li><a href="faq.html">F.A.Q.</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                        </ul>
-                                    </li>*@
+            <a href="#!">Pages</a>
+            <ul class="submenu">
+                <li><a href="service.html">Our Service</a></li>
+                <li><a href="gallery.html">Car Gallery</a></li>
+                <li><a href="account.html">My Account</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li class="has_child">
+                    <a href="#!">Blogs</a>
+                    <ul class="submenu">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="blog_details.html">Blog Details</a></li>
+                    </ul>
+                </li>
+                <li class="has_child">
+                    <a href="#!">Our Cars</a>
+                    <ul class="submenu">
+                        <li><a href="car.html">Cars</a></li>
+                        <li><a href="car_details.html">Car Details</a></li>
+                    </ul>
+                </li>
+                <li><a href="cart.html">Shopping Cart</a></li>
+                <li><a href="faq.html">F.A.Q.</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </li>*@
 
                             </ul>
                         </nav>

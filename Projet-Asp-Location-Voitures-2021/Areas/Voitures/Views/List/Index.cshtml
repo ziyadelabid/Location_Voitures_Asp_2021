@@ -507,7 +507,7 @@
                                                 </a>
                                             </h3>
                                             <div class="item_image position-relative">
-                                                <a class="image_wrap" href="@Url.Action("Index", "DetailVoit", new { id = voiture.Id })">
+                                                <a class="image_wrap" href="@Url.Action("LoginLoc", "Locat", new { Area ="Locataire" })">
                                                     <img src=@Url.Content("~/images/" + voiture.Image_Name) alt="image_not_found">
                                                 </a>
                                                 @if (voiture.Promotion == null)

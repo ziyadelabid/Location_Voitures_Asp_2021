@@ -1,9 +1,8 @@
-﻿@model Projet_Asp_Location_Voitures_2021.Models.Proprietaire
+﻿@model Projet_Asp_Location_Voitures_2021.Models.Voiture
 
 @{
-    ViewBag.Title = "DeleteProp";
+    ViewBag.Title = "DeleteVoiture";
 }
-
 
 <!DOCTYPE html>
 <html>
@@ -14,8 +13,8 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
-           
+            margin-top: 0px;
+          
         }
 
         .containero {
@@ -141,7 +140,7 @@
             <div class="header">
                 <div class="row r1">
                     <div class="col-md-9 abc">
-                        <h1>@Html.DisplayFor(model => model.Name_Prop)</h1>
+                        <h1>@Html.DisplayFor(model => model.Marque)</h1>
                     </div>
 
                 </div>
@@ -150,17 +149,20 @@
                 <div class="row r3">
                     <div class="col-md-5 p-0 klo">
                         <ul>
-                 
-                            <li>Email : @Html.DisplayFor(model => model.Email_Prop)</li>
-                            <li>Tél :@Html.DisplayFor(model => model.Phone_number_Prop)</li>
-                            <li>Adresse : @Html.DisplayFor(model => model.Adresse_Prop)</li>
-                            <li>Statut :@Html.DisplayFor(model => model.Type)</li>
+                            <li>Couleur : @Html.DisplayFor(model => model.Couleur)</li>
+                            <li>Année du modèle :@Html.DisplayFor(model => model.Annee)</li>
+                            <li>Prix : @Html.DisplayFor(model => model.Prix) Dhs</li>
+                            <li>Carburant :@Html.DisplayFor(model => model.Carburant)</li>
+                            <li>Boîte vitesse @Html.DisplayFor(model => model.Boite_Vitesse)</li>
+                            <li>Nombre de places  :@Html.DisplayFor(model => model.Places)</li>
+                            <li>Nombre de portes :@Html.DisplayFor(model => model.Portes)</li>
                         </ul>
                         <div class="form-actions no-color align-content-center" id="BtnDelete">
-                            <input type="submit" value="Confirmer le retrait" class="btn btn-danger" />
+                            <input type="submit" value="Confirmer la suppression" class="btn btn-danger" />
+
                         </div>
                     </div>
-                    <div class="col-md-7"><img class="rounded-circle mt-0" style="margin-bottom:30px;" src="@Url.Content("~/images/" + @Model.Image_Name)" width="300"></div>
+                    <div class="col-md-7"> <img src="@Url.Content("~/images/" + @Model.Image_Name)" width="450"> </div>
                 </div>
             </div>
 

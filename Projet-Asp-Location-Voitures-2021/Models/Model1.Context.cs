@@ -28,6 +28,7 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Locataire> Locataire { get; set; }
         public virtual DbSet<Proprietaire> Proprietaire { get; set; }
+        public virtual DbSet<Reclamation> Reclamation { get; set; }
         public virtual DbSet<Reservation> Reservation { get; set; }
         public virtual DbSet<Voiture> Voiture { get; set; }
     }

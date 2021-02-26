@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LocationDeVoituresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LocationDeVoituresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id_Admin" />
@@ -45,6 +45,16 @@
           <Property Name="Role" Type="nvarchar(max)" />
           <Property Name="Image_Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Reclamation">
+          <Key>
+            <PropertyRef Name="Id_Reclamation" />
+          </Key>
+          <Property Name="Id_Reclamation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Loc" Type="int" />
+          <Property Name="Id_Prop" Type="int" />
+          <Property Name="Date_Reclamation" Type="datetime" />
+          <Property Name="Message" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Reservation">
           <Key>
             <PropertyRef Name="Id_Reservation" />
@@ -76,6 +86,30 @@
           <Property Name="Portes" Type="smallint" Nullable="false" />
           <Property Name="Image_Name" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK_Reclamation_Locataire">
+          <End Role="Locataire" Type="Self.Locataire" Multiplicity="0..1" />
+          <End Role="Reclamation" Type="Self.Reclamation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locataire">
+              <PropertyRef Name="Id_Locataire" />
+            </Principal>
+            <Dependent Role="Reclamation">
+              <PropertyRef Name="Id_Loc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reclamation_Proprietaire">
+          <End Role="Proprietaire" Type="Self.Proprietaire" Multiplicity="0..1" />
+          <End Role="Reclamation" Type="Self.Reclamation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proprietaire">
+              <PropertyRef Name="Id_Proprietaire" />
+            </Principal>
+            <Dependent Role="Reclamation">
+              <PropertyRef Name="Id_Prop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reservation_Locataire">
           <End Role="Locataire" Type="Self.Locataire" Multiplicity="1" />
           <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
@@ -116,8 +150,17 @@
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Locataire" EntityType="Self.Locataire" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proprietaire" EntityType="Self.Proprietaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reclamation" EntityType="Self.Reclamation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voiture" EntityType="Self.Voiture" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Reclamation_Locataire" Association="Self.FK_Reclamation_Locataire">
+            <End Role="Locataire" EntitySet="Locataire" />
+            <End Role="Reclamation" EntitySet="Reclamation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reclamation_Proprietaire" Association="Self.FK_Reclamation_Proprietaire">
+            <End Role="Proprietaire" EntitySet="Proprietaire" />
+            <End Role="Reclamation" EntitySet="Reclamation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reservation_Locataire" Association="Self.FK_Reservation_Locataire">
             <End Role="Locataire" EntitySet="Locataire" />
             <End Role="Reservation" EntitySet="Reservation" />
@@ -131,8 +174,7 @@
             <End Role="Voiture" EntitySet="Voiture" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LocationDeVoituresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -160,6 +202,7 @@
           <Property Name="Permis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="image_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reclamation" Relationship="Self.FK_Reclamation_Locataire" FromRole="Locataire" ToRole="Reclamation" />
           <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Locataire" FromRole="Locataire" ToRole="Reservation" />
         </EntityType>
         <EntityType Name="Proprietaire">
@@ -176,7 +219,20 @@
           <Property Name="Image_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reclamation" Relationship="Self.FK_Reclamation_Proprietaire" FromRole="Proprietaire" ToRole="Reclamation" />
           <NavigationProperty Name="Voiture" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Proprietaire" ToRole="Voiture" />
+        </EntityType>
+        <EntityType Name="Reclamation">
+          <Key>
+            <PropertyRef Name="Id_Reclamation" />
+          </Key>
+          <Property Name="Id_Reclamation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Loc" Type="Int32" />
+          <Property Name="Id_Prop" Type="Int32" />
+          <Property Name="Date_Reclamation" Type="DateTime" Precision="3" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Locataire" Relationship="Self.FK_Reclamation_Locataire" FromRole="Reclamation" ToRole="Locataire" />
+          <NavigationProperty Name="Proprietaire" Relationship="Self.FK_Reclamation_Proprietaire" FromRole="Reclamation" ToRole="Proprietaire" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
@@ -213,6 +269,18 @@
           <NavigationProperty Name="Proprietaire" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Voiture" ToRole="Proprietaire" />
           <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Voiture" FromRole="Voiture" ToRole="Reservation" />
         </EntityType>
+        <Association Name="FK_Reclamation_Locataire">
+          <End Role="Locataire" Type="Self.Locataire" Multiplicity="0..1" />
+          <End Role="Reclamation" Type="Self.Reclamation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locataire">
+              <PropertyRef Name="Id_Locataire" />
+            </Principal>
+            <Dependent Role="Reclamation">
+              <PropertyRef Name="Id_Loc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reservation_Locataire">
           <End Role="Locataire" Type="Self.Locataire" Multiplicity="1" />
           <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
@@ -222,6 +290,18 @@
             </Principal>
             <Dependent Role="Reservation">
               <PropertyRef Name="Id_Loc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reclamation_Proprietaire">
+          <End Role="Proprietaire" Type="Self.Proprietaire" Multiplicity="0..1" />
+          <End Role="Reclamation" Type="Self.Reclamation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proprietaire">
+              <PropertyRef Name="Id_Proprietaire" />
+            </Principal>
+            <Dependent Role="Reclamation">
+              <PropertyRef Name="Id_Prop" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -253,11 +333,20 @@
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="Locataire" EntityType="Self.Locataire" />
           <EntitySet Name="Proprietaire" EntityType="Self.Proprietaire" />
+          <EntitySet Name="Reclamation" EntityType="Self.Reclamation" />
           <EntitySet Name="Reservation" EntityType="Self.Reservation" />
           <EntitySet Name="Voiture" EntityType="Self.Voiture" />
+          <AssociationSet Name="FK_Reclamation_Locataire" Association="Self.FK_Reclamation_Locataire">
+            <End Role="Locataire" EntitySet="Locataire" />
+            <End Role="Reclamation" EntitySet="Reclamation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reservation_Locataire" Association="Self.FK_Reservation_Locataire">
             <End Role="Locataire" EntitySet="Locataire" />
             <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reclamation_Proprietaire" Association="Self.FK_Reclamation_Proprietaire">
+            <End Role="Proprietaire" EntitySet="Proprietaire" />
+            <End Role="Reclamation" EntitySet="Reclamation" />
           </AssociationSet>
           <AssociationSet Name="FK_Voiture_Proprietaire" Association="Self.FK_Voiture_Proprietaire">
             <End Role="Proprietaire" EntitySet="Proprietaire" />
@@ -314,6 +403,17 @@
                 <ScalarProperty Name="Image_Prop" ColumnName="Image_Prop" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Image_Name" ColumnName="Image_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reclamation">
+            <EntityTypeMapping TypeName="LocationDeVoituresModel.Reclamation">
+              <MappingFragment StoreEntitySet="Reclamation">
+                <ScalarProperty Name="Id_Reclamation" ColumnName="Id_Reclamation" />
+                <ScalarProperty Name="Id_Loc" ColumnName="Id_Loc" />
+                <ScalarProperty Name="Id_Prop" ColumnName="Id_Prop" />
+                <ScalarProperty Name="Date_Reclamation" ColumnName="Date_Reclamation" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

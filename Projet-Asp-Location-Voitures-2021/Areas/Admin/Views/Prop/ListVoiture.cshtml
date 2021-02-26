@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Projet_Asp_Location_Voitures_2021.Models.Proprietaire>
+﻿@model IEnumerable<Projet_Asp_Location_Voitures_2021.Models.Voiture>
 
 @{
-    ViewBag.Title = "ListProp";
+    ViewBag.Title = "ListVoiture";
 }
 
 
@@ -13,14 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Tables - SB Admin</title>
+    <title>Proprietaire</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     <style>
-        a
-        {
-            padding-left:10px;
+        a {
+            padding-left: 10px;
         }
     </style>
 </head>
@@ -29,7 +28,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
-            Liste des propriétaires
+           Liste de voitures de ce propriétaire :
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -37,19 +36,25 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Name_Prop)
+                                Marque
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Email_Prop)
+                                Couleur
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Phone_number_Prop)
+                                Année du modèle
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Adresse_Prop)
+                                Carburant
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Type)
+                                Boîte vitesse
+                            </th>
+                            <th>
+                                Num de Portes
+                            </th>
+                            <th>
+                                Num de Places
                             </th>
                             <th></th>
                         </tr>
@@ -58,29 +63,37 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name_Prop)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Email_Prop)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Phone_number_Prop)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Adresse_Prop)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Type)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("EditProp", "Prop", new { id = item.Id_Proprietaire})" id="btnSearch" class="my-auto"><img src="~/images/edit.jpg" width="30" /></a>
-                                    <a href="@Url.Action("DeleteProp", "Prop", new { id = item.Id_Proprietaire })" id="btnClear" class="my-auto"><img src="~/images/trash.png" width="30" /></a>
-                                    <a href="@Url.Action("ListVoiture", "Prop", new { id = item.Id_Proprietaire })" id="btnClear" class="my-auto"><img src="~/images/blackcar.png" width="40" /></a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Marque)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Couleur)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Annee)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Carburant)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Boite_Vitesse)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Places)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Portes)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("EditVoiture", "Prop", new { id = item.Id_Voiture})" id="btnSearch" class="my-auto"><img src="~/images/edit.jpg" width="30" /></a>
+                                <a href="@Url.Action("DeleteVoiture", "Prop", new { id = item.Id_Voiture })" id="btnClear" class="my-auto"><img src="~/images/trash.png" width="30" /></a>
+                               
+                            </td>
+                        </tr>
                         }
+
+
                     </tbody>
                 </table>
             </div>

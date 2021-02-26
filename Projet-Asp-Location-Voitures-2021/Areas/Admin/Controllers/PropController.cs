@@ -78,7 +78,70 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("ListProp");
          }
-            
+        public ActionResult ListVoiture(int id)
+        {
+            var voitures = db.Voiture.Where(a => a.Id_Prop.Equals(id)).ToList();
+            return View(voitures);
+           
+        }
+
+        public ActionResult EditVoiture(int? id)
+        {
+
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Models.Voiture voiture = db.Voiture.Find(id);
+            if (voiture == null)
+            {
+                return HttpNotFound();
+            }
+            return View(voiture);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditVoiture([Bind(Include = "Id_Voiture,Marque,Couleur,Annee,Id_Prop,Prix,Promotion,Image_Voiture,Image_Name,Carburant,Boite_Vitesse,Emplacement_Prise,Emplacement_Retour,Places,Portes")] Models.Voiture voitures)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(voitures).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ListVoiture", new { id = voitures.Id_Prop });
+            }
+            return View(voitures);
+        }
+        public ActionResult DeleteVoiture(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Voiture voiture = db.Voiture.Find(id);
+            if (voiture == null)
+            {
+                return HttpNotFound();
+            }
+            return View(voiture);
+        }
+
+        [HttpPost, ActionName("DeleteVoiture")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirme(int id)
+        {
+
+            Models.Voiture voiture = db.Voiture.Find(id);
+            db.Voiture.Remove(voiture);
+            db.SaveChanges();
+            return RedirectToAction("ListVoiture", new { id=voiture.Id_Prop});
+        }
+
 
     }
 }
