@@ -11,8 +11,7 @@ namespace Projet_Asp_Location_Voitures_2021.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Proprietaire
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,19 +19,13 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         {
             this.Voiture = new HashSet<Voiture>();
         }
-        [Display(Name="ID :")] 
+    
         public int Id_Proprietaire { get; set; }
-        [Display(Name = "Nom Complet :")]
         public string Name_Prop { get; set; }
-        [Display(Name = "Email :")]
         public string Email_Prop { get; set; }
-        [Display(Name = "Mot de passe :")]
         public string Password_Prop { get; set; }
-        [Display(Name = "Tel :")]
         public string Phone_number_Prop { get; set; }
-        [Display(Name = "Adresse :")]
         public string Adresse_Prop { get; set; }
-        [Display(Name = "Statut")]
         public string Type { get; set; }
         public string Image_Prop { get; set; }
         public string Role { get; set; }

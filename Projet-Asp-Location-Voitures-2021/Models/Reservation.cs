@@ -16,12 +16,10 @@ namespace Projet_Asp_Location_Voitures_2021.Models
     {
         public int Id_Reservation { get; set; }
         public System.DateTime Date_Reservation { get; set; }
+        public System.DateTime Date_Retour { get; set; }
         public decimal Montant { get; set; }
         public int Id_Loc { get; set; }
         public int Id_Voit { get; set; }
-        public string Emplacement_Prise { get; set; }
-        public string Emplacement_Retour { get; set; }
-        public System.DateTime Date_Retour { get; set; }
     
         public virtual Locataire Locataire { get; set; }
         public virtual Voiture Voiture { get; set; }

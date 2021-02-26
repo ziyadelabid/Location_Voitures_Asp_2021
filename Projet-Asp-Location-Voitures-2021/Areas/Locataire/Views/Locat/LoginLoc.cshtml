@@ -1,0 +1,96 @@
+﻿@model Projet_Asp_Location_Voitures_2021.Models.Locataire
+
+@{
+    ViewBag.Title = "LoginLoc";
+}
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            height: 500px;
+            /* You must set a specified height */ background-position: center;
+            /* Center the image */ background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover;
+            background-image: url("/images/lamborghinibackground.png");
+            height: 100vh;
+        }
+
+        #login .container #login-row #login-column #login-box {
+            margin-top: 250px;
+            max-width: 600px;
+            height: 380px;
+            border: 1px solid #9C9C9C;
+            background-color: #f7f7f7;
+            opacity: 0.75;
+        }
+
+            #login .container #login-row #login-column #login-box:hover {
+                opacity: 1;
+            }
+
+            #login .container #login-row #login-column #login-box #login-form {
+                padding: 20px;
+            }
+
+
+                #login .container #login-row #login-column #login-box #login-form #register-link {
+                    margin-top: -85px;
+                }
+
+        .avatar {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="login">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        @using (Html.BeginForm("LoginLoc", "Locat", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div align="center">
+                                <img src="~/images/avatar.jpeg" class="avatar" />
+                            </div>
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label for="username" class="text-info">Email :</label><br>
+                                @Html.TextBoxFor(a => a.Email_Loc)
+                                <div>
+                                    @Html.ValidationMessageFor(a => a.Email_Loc)
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                @Html.PasswordFor(a => a.Password_Loc)
+                                <div>
+                                    @Html.ValidationMessageFor(a => a.Password_Loc)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Connexion">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a href="@Url.Action("Index", "Default")" class="text-info">S'inscrire</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

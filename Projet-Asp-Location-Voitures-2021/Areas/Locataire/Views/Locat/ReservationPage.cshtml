@@ -1,0 +1,51 @@
+﻿@model Projet_Asp_Location_Voitures_2021.Models.Reservation
+
+@{
+                /**/
+
+                ViewBag.Title = "ReservationPage";
+}
+
+<h2>ReservationPage</h2>
+
+@using (Html.BeginForm("ReservationPage", "Locat", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    @Html.HiddenFor(model => model.Montant)
+
+
+
+
+    <div class="form-horizontal">
+        <h4>Reservation</h4>
+        <hr />
+
+
+
+        <div class="form-group">
+            Date de Reservation
+            <div class="col-md-10">
+                <input type="date" name="Date_Reservation" id="Date_Reservation" class="form-control" />
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            Date de Retour :
+            <div class="col-md-10">
+                <input type="date" name="Date_retour" id="Date_retour" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Reserver" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+

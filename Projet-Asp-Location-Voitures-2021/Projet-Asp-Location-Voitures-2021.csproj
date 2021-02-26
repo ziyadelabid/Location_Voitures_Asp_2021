@@ -303,7 +303,6 @@
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Locataire\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
@@ -335,13 +334,6 @@
     <Content Include="fonts\icomoon\selection.json" />
     <Content Include="Areas\Proprietaire\Views\Default\Edit.cshtml" />
     <Content Include="Areas\Proprietaire\Views\Default\Delete.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Proprietaire\Views\Default\EditProfil.cshtml" />
     <Content Include="Areas\Proprietaire\Views\Default\AddCar.cshtml" />
     <Content Include="Areas\Voitures\Views\List\FilteredVoitures.cshtml" />
@@ -397,6 +389,20 @@
     <Content Include="Areas\Admin\Views\Prop\ListProp.cshtml" />
     <Content Include="Areas\Admin\Views\Prop\EditProp.cshtml" />
     <Content Include="Areas\Admin\Views\Prop\DeleteProp.cshtml" />
+    <Content Include="Areas\Locataire\Views\web.config" />
+    <Content Include="Areas\Locataire\Views\Shared\UserLayout.cshtml" />
+    <Content Include="Areas\Locataire\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Locataire\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\LoginLoc.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\DashboardLoc.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\ReservationPage.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2285,6 +2291,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\PropController.cs" />
+    <Compile Include="Areas\Locataire\Controllers\LocatController.cs" />
     <Compile Include="Areas\Locataire\LocataireAreaRegistration.cs" />
     <Compile Include="Areas\Proprietaire\Controllers\CarsController.cs" />
     <Compile Include="Areas\Proprietaire\Controllers\DefaultController.cs" />
@@ -2451,9 +2458,7 @@
   <ItemGroup>
     <Folder Include="App_Data\pictures\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Locataire\Controllers\" />
     <Folder Include="Areas\Locataire\Models\" />
-    <Folder Include="Areas\Locataire\Views\Shared\" />
     <Folder Include="Areas\Proprietaire\Models\" />
   </ItemGroup>
   <ItemGroup>

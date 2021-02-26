@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LocationDeVoituresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LocationDeVoituresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id_Admin" />
@@ -49,14 +49,12 @@
           <Key>
             <PropertyRef Name="Id_Reservation" />
           </Key>
-          <Property Name="Id_Reservation" Type="int" Nullable="false" />
+          <Property Name="Id_Reservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date_Reservation" Type="datetime" Nullable="false" />
           <Property Name="Date_Retour" Type="datetime" Nullable="false" />
           <Property Name="Montant" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Id_Loc" Type="int" Nullable="false" />
           <Property Name="Id_Voit" Type="int" Nullable="false" />
-          <Property Name="Emplacement_Prise" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Emplacement_Retour" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Voiture">
           <Key>
@@ -133,7 +131,8 @@
             <End Role="Voiture" EntitySet="Voiture" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LocationDeVoituresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -176,23 +175,21 @@
           <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image_Prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Voiture" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Proprietaire" ToRole="Voiture" />
           <Property Name="Image_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Voiture" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Proprietaire" ToRole="Voiture" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
             <PropertyRef Name="Id_Reservation" />
           </Key>
-          <Property Name="Id_Reservation" Type="Int32" Nullable="false" />
+          <Property Name="Id_Reservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date_Reservation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date_Retour" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Montant" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Id_Loc" Type="Int32" Nullable="false" />
           <Property Name="Id_Voit" Type="Int32" Nullable="false" />
-          <Property Name="Emplacement_Prise" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Emplacement_Retour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Locataire" Relationship="Self.FK_Reservation_Locataire" FromRole="Reservation" ToRole="Locataire" />
           <NavigationProperty Name="Voiture" Relationship="Self.FK_Reservation_Voiture" FromRole="Reservation" ToRole="Voiture" />
-          <Property Name="Date_Retour" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Voiture">
           <Key>
@@ -206,8 +203,6 @@
           <Property Name="Prix" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Promotion" Type="Int16" />
           <Property Name="Image_Voiture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Proprietaire" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Voiture" ToRole="Proprietaire" />
-          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Voiture" FromRole="Voiture" ToRole="Reservation" />
           <Property Name="Carburant" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Boite_Vitesse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Emplacement_Prise" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -215,6 +210,8 @@
           <Property Name="Places" Type="Int16" Nullable="false" />
           <Property Name="Portes" Type="Int16" Nullable="false" />
           <Property Name="Image_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Proprietaire" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Voiture" ToRole="Proprietaire" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Voiture" FromRole="Voiture" ToRole="Reservation" />
         </EntityType>
         <Association Name="FK_Reservation_Locataire">
           <End Role="Locataire" Type="Self.Locataire" Multiplicity="1" />
@@ -307,7 +304,6 @@
           <EntitySetMapping Name="Proprietaire">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Proprietaire">
               <MappingFragment StoreEntitySet="Proprietaire">
-                <ScalarProperty Name="Image_Name" ColumnName="Image_Name" />
                 <ScalarProperty Name="Id_Proprietaire" ColumnName="Id_Proprietaire" />
                 <ScalarProperty Name="Name_Prop" ColumnName="Name_Prop" />
                 <ScalarProperty Name="Email_Prop" ColumnName="Email_Prop" />
@@ -317,33 +313,25 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Image_Prop" ColumnName="Image_Prop" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Image_Name" ColumnName="Image_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reservation">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
-                <ScalarProperty Name="Date_Retour" ColumnName="Date_Retour" />
                 <ScalarProperty Name="Id_Reservation" ColumnName="Id_Reservation" />
                 <ScalarProperty Name="Date_Reservation" ColumnName="Date_Reservation" />
+                <ScalarProperty Name="Date_Retour" ColumnName="Date_Retour" />
                 <ScalarProperty Name="Montant" ColumnName="Montant" />
                 <ScalarProperty Name="Id_Loc" ColumnName="Id_Loc" />
                 <ScalarProperty Name="Id_Voit" ColumnName="Id_Voit" />
-                <ScalarProperty Name="Emplacement_Prise" ColumnName="Emplacement_Prise" />
-                <ScalarProperty Name="Emplacement_Retour" ColumnName="Emplacement_Retour" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Voiture">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Voiture">
               <MappingFragment StoreEntitySet="Voiture">
-                <ScalarProperty Name="Image_Name" ColumnName="Image_Name" />
-                <ScalarProperty Name="Portes" ColumnName="Portes" />
-                <ScalarProperty Name="Places" ColumnName="Places" />
-                <ScalarProperty Name="Emplacement_Retour" ColumnName="Emplacement_Retour" />
-                <ScalarProperty Name="Emplacement_Prise" ColumnName="Emplacement_Prise" />
-                <ScalarProperty Name="Boite_Vitesse" ColumnName="Boite_Vitesse" />
-                <ScalarProperty Name="Carburant" ColumnName="Carburant" />
                 <ScalarProperty Name="Id_Voiture" ColumnName="Id_Voiture" />
                 <ScalarProperty Name="Marque" ColumnName="Marque" />
                 <ScalarProperty Name="Couleur" ColumnName="Couleur" />
@@ -352,6 +340,13 @@
                 <ScalarProperty Name="Prix" ColumnName="Prix" />
                 <ScalarProperty Name="Promotion" ColumnName="Promotion" />
                 <ScalarProperty Name="Image_Voiture" ColumnName="Image_Voiture" />
+                <ScalarProperty Name="Carburant" ColumnName="Carburant" />
+                <ScalarProperty Name="Boite_Vitesse" ColumnName="Boite_Vitesse" />
+                <ScalarProperty Name="Emplacement_Prise" ColumnName="Emplacement_Prise" />
+                <ScalarProperty Name="Emplacement_Retour" ColumnName="Emplacement_Retour" />
+                <ScalarProperty Name="Places" ColumnName="Places" />
+                <ScalarProperty Name="Portes" ColumnName="Portes" />
+                <ScalarProperty Name="Image_Name" ColumnName="Image_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
