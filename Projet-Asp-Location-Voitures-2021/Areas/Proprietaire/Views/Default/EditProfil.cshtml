@@ -14,6 +14,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <style>
         body {
+            margin-top: 50px;
             background-position: center;
             /* Center the image */ background-repeat: repeat-y; /* Do not repeat the image */
             background-size: cover;
@@ -60,12 +61,14 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-    <div class="container rounded bg-white mt-5">
+    <div class="container rounded bg-white">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id_Proprietaire)
         @Html.HiddenFor(model => model.Image_Prop)
         @Html.HiddenFor(model => model.Role)
         @Html.HiddenFor(model => model.Image_Name)
+        @Html.HiddenFor(model => model.Password_Prop)
+
 
 
         <div class="row">
@@ -79,20 +82,18 @@
                         <h6 class="text-left">Détails du profil :</h6>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6">@Html.EditorFor(model => model.Name_Prop, new { htmlAttributes = new { @class = "form-control" ,placeholder="Nom Complet"} })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Name_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Nom Complet" } })</div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6"> @Html.EditorFor(model => model.Email_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })</div>
-                        <div class="col-md-6">@Html.EditorFor(model => model.Password_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })</div>
-                    </div>
-                    <div class="row mt-3">
                         <div class="col-md-6">@Html.EditorFor(model => model.Phone_number_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Tél" } })</div>
-                        <div class="col-md-6"> @Html.EditorFor(model => model.Adresse_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Adresse" } })</div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6">@Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", placeholder = "Statut" } })</div>
 
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Adresse_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Adresse" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", placeholder = "Statut" } })</div>
                     </div>
+                  
                     <div class="mt-5 text-right"><input type="submit" value="Sauvegarder" class="btn btn-primary" /></div>
                 </div>
             </div>
