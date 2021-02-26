@@ -70,6 +70,8 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
                     LocationDeVoituresEntities entities = new LocationDeVoituresEntities();
                     voiture.Image_Name = fileName;
                     voiture.Image_Voiture = filePath;
+
+                    voiture.Promotion = Convert.ToInt16(voiture.Prix -(voiture.Prix*voiture.Promotion/100));
                     voiture.Id_Prop = Int32.Parse(Session["PropID"].ToString());
                     db.Voiture.Add(voiture);
                     db.SaveChanges();

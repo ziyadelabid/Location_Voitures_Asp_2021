@@ -11,7 +11,6 @@
     <!-- Custom styles for this template -->
     <link href="~/css/heroic-features.css" rel="stylesheet">
     <style>
-     
     </style>
 </head>
 <body>
@@ -25,15 +24,15 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="@Url.Action("Index", "List",new { Area = "Voitures"})">
                             Home
                             <span class="sr-only">(current)</span>
                         </a>
-                    </li>      
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Login", "Default")">Log in</a>
                     </li>
-                  
+
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Default")">S'inscrire</a>
                     </li>
@@ -51,7 +50,6 @@
     </div>
     <!-- /.container -->
     <!-- Footer -->
-    
     <!-- Bootstrap core JavaScript -->
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

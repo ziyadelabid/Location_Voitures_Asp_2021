@@ -256,6 +256,7 @@
     <Content Include="css\css\owl.theme.default.min.css" />
     <Content Include="css\css\style.css" />
     <Content Include="images\bgcar.jfif" />
+    <Content Include="images\blackcar.png" />
     <Content Include="images\car.jfif" />
     <Content Include="images\edit.jpg" />
     <Content Include="images\gd.jfif" />
@@ -393,6 +394,9 @@
     <Content Include="css\css\fontawesome-free\webfonts\fa-solid-900.woff" />
     <Content Include="css\css\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="css\css\style.css.map" />
+    <Content Include="Areas\Admin\Views\Prop\ListProp.cshtml" />
+    <Content Include="Areas\Admin\Views\Prop\EditProp.cshtml" />
+    <Content Include="Areas\Admin\Views\Prop\DeleteProp.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2280,6 +2284,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PropController.cs" />
     <Compile Include="Areas\Locataire\LocataireAreaRegistration.cs" />
     <Compile Include="Areas\Proprietaire\Controllers\CarsController.cs" />
     <Compile Include="Areas\Proprietaire\Controllers\DefaultController.cs" />

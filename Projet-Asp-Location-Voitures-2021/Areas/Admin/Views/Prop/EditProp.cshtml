@@ -1,0 +1,107 @@
+﻿@model Projet_Asp_Location_Voitures_2021.Models.Proprietaire
+
+@{
+    ViewBag.Title = "EditProp";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profil </title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <style>
+        body {
+            background-position: center;
+            /* Center the image */ background-repeat: repeat-y; /* Do not repeat the image */
+            background-size: cover;
+            background-image: url("/images/profilbg.jpg");
+            height: 100vh;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #BA68C8;
+        }
+
+        .profile-button {
+            background: #BA68C8;
+            box-shadow: none;
+            border: none
+        }
+
+            .profile-button:hover {
+                background: #682773
+            }
+
+            .profile-button:focus {
+                background: #682773;
+                box-shadow: none
+            }
+
+            .profile-button:active {
+                background: #682773;
+                box-shadow: none
+            }
+
+        .back:hover {
+            color: #682773;
+            cursor: pointer
+        }
+
+        .rounded-circle {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div class="container rounded bg-white mt-5">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id_Proprietaire)
+        @Html.HiddenFor(model => model.Image_Prop)
+        @Html.HiddenFor(model => model.Role)
+        @Html.HiddenFor(model => model.Image_Name)
+        @Html.HiddenFor(model => model.Password_Prop)
+
+
+        <div class="row">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="@Url.Content("~/images/" + @Model.Image_Name)" width="200"><span class="font-weight-bold">@Model.Name_Prop</span><span class="text-black-50">@Model.Email_Prop</span></div>
+            </div>
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <h6 class="text-left">Détails du profil :</h6>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">@Html.EditorFor(model => model.Name_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Nom Complet" } })</div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Email_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })</div>
+                        <div class="col-md-6">@Html.EditorFor(model => model.Phone_number_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Tél" } })</div>
+                    </div>
+                    <div class="row mt-3">
+
+                        <div class="col-md-6"> @Html.EditorFor(model => model.Adresse_Prop, new { htmlAttributes = new { @class = "form-control", placeholder = "Adresse" } })</div>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", placeholder = "Statut" } })
+                    </div>
+                </div>
+
+                <div class="mt-5 text-right"><input type="submit" value="Sauvegarder" class="btn btn-primary" /></div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    }
+
+</body>
+
+</html>
