@@ -270,6 +270,17 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Proprietaire.Controllers
             return RedirectToAction("UserDashboard");
 
         }
-
+        public ActionResult ListReservation(int id)
+        {
+            var reservation = db.Reservation.Where(x => x.Voiture.Id_Prop.Equals(id)).ToList();
+            return View(reservation);
+        }
+        public ActionResult Approuve(Reservation reservation,int id)
+        {
+            reservation.Id_Reservation = id;
+            reservation.StatusReservation = "Approuvé";
+            return RedirectToAction("ListReservation","Default");
+        }
+       
     }
 }

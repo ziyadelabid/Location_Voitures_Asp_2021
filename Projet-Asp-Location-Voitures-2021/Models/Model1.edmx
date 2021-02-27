@@ -65,6 +65,7 @@
           <Property Name="Montant" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Id_Loc" Type="int" Nullable="false" />
           <Property Name="Id_Voit" Type="int" Nullable="false" />
+          <Property Name="StatusReservation" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Voiture">
           <Key>
@@ -246,6 +247,7 @@
           <Property Name="Id_Voit" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Locataire" Relationship="Self.FK_Reservation_Locataire" FromRole="Reservation" ToRole="Locataire" />
           <NavigationProperty Name="Voiture" Relationship="Self.FK_Reservation_Voiture" FromRole="Reservation" ToRole="Voiture" />
+          <Property Name="StatusReservation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Voiture">
           <Key>
@@ -420,6 +422,7 @@
           <EntitySetMapping Name="Reservation">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="StatusReservation" ColumnName="StatusReservation" />
                 <ScalarProperty Name="Id_Reservation" ColumnName="Id_Reservation" />
                 <ScalarProperty Name="Date_Reservation" ColumnName="Date_Reservation" />
                 <ScalarProperty Name="Date_Retour" ColumnName="Date_Retour" />
