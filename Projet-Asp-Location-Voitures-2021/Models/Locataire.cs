@@ -31,6 +31,8 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         public string Permis { get; set; }
         public string Role { get; set; }
         public string image_Loc { get; set; }
+        public Nullable<bool> Blocked { get; set; }
+        public Nullable<bool> Favourite { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reclamation> Reclamation { get; set; }

@@ -37,19 +37,19 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Name_Prop)
+                                Nom Complet
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Email_Prop)
+                                Email
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Phone_number_Prop)
+                                Tél
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Adresse_Prop)
+                                Adresse
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Type)
+                                Type
                             </th>
                             <th></th>
                         </tr>
@@ -58,6 +58,23 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            var favClassName = "far fa-star fa-lg";
+                            var banClassName = "fas fa-user-lock fa-lg";
+                            var favourite = "set";
+                            var blocked = "set";
+
+                            if (item.Favourite == true)
+                            {
+                                favClassName = "fas fa-star fa-lg";
+                                favourite = "unset";
+                            }
+
+                            if (item.Blocked == true)
+                            {
+                                banClassName = "fas fa-unlock fa-lg";
+                                blocked = "unset";
+                            }
+
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name_Prop)
@@ -78,6 +95,8 @@
                                     <a href="@Url.Action("EditProp", "Prop", new { id = item.Id_Proprietaire})" id="btnSearch" class="my-auto"><img src="~/images/edit.jpg" width="30" /></a>
                                     <a href="@Url.Action("DeleteProp", "Prop", new { id = item.Id_Proprietaire })" id="btnClear" class="my-auto"><img src="~/images/trash.png" width="30" /></a>
                                     <a href="@Url.Action("ListVoiture", "Prop", new { id = item.Id_Proprietaire })" id="btnClear" class="my-auto"><img src="~/images/blackcar.png" width="40" /></a>
+                                    <a href="@Url.Action("FavoriteProp","UserStatus", new { id = item.Id_Proprietaire , status = favourite })" id="btnFav" class="my-auto" style="text-decoration:none;color:black"><i class="@favClassName"></i></a>
+                                    <a href="@Url.Action("BanProp","UserStatus", new { id = item.Id_Proprietaire , status = blocked })" id="btnBan" class="my-auto" style="text-decoration:none;color:black"><i class="@banClassName"></i></a>
                                 </td>
                             </tr>
                         }

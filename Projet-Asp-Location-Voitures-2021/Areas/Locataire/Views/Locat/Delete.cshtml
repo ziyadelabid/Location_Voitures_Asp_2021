@@ -1,0 +1,97 @@
+﻿@model  Projet_Asp_Location_Voitures_2021.Models.Locataire
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Locataire/Views/Shared/LocatBar.cshtml";
+}
+
+
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Loc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Loc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password_Loc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password_Loc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone_number_Loc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone_number_Loc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse_Loc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse_Loc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name_Loc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_Loc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cin_Loc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cin_Loc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Permis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Permis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_Loc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_Loc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

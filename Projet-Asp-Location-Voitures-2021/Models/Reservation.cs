@@ -21,6 +21,7 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         public int Id_Loc { get; set; }
         public int Id_Voit { get; set; }
         public string StatusReservation { get; set; }
+        public string Payment { get; set; }
     
         public virtual Locataire Locataire { get; set; }
         public virtual Voiture Voiture { get; set; }

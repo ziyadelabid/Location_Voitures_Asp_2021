@@ -141,7 +141,12 @@ namespace Projet_Asp_Location_Voitures_2021.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("ListVoiture", new { id=voiture.Id_Prop});
         }
-
+        
+        public ActionResult ListReclamation()
+        {
+           
+            return View(db.Reclamation.ToList());
+        }
 
     }
 }

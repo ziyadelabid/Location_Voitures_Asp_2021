@@ -64,8 +64,8 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                         <div class="brand_logo">
                             <a href='@Url.Action("Index", "Default", new { Area = "" })'>
-                                <img src="~/assets//images/logo/logo_01_1x.png" srcset="~/assets//images/logo/logo_01_2x.png 2x" alt="logo_not_found">
-                                <img src="~/assets//images/logo/logo_02_1x.png" srcset="~/assets//images/logo/logo_02_2x.png 2x" alt="logo_not_found">
+                                <img src="~/assets//images/logo/logo_01_2x.png" srcset="~/assets//images/logo/logo_01_2x.png 2x" alt="logo_not_found">
+                                <img src="~/assets//images/logo/logo_02_2x.png" srcset="~/assets//images/logo/logo_02_2x.png 2x" alt="logo_not_found">
                             </a>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                                     <a href="#!">Se Connecter</a>
                                     <ul class="submenu">
                                         <li style="padding:0.1em 1.5em;"><h6>Autant que:</h6></li>
-                                        <li><a href="contact.html">Locataire</a></li>
+                                        <li><a href="@Url.Action("LoginLoc", "Locat", new { Area = "Locataire" })">Locataire</a></li>
                                         <li><a href="@Url.Action("Login", "Default", new { Area = "Proprietaire" })">Proprietaire</a></li>
                                     </ul>
                                 </li>

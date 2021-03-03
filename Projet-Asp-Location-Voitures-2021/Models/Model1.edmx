@@ -29,6 +29,8 @@
           <Property Name="Permis" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
           <Property Name="image_Loc" Type="nvarchar(max)" />
+          <Property Name="Blocked" Type="bit" />
+          <Property Name="Favourite" Type="bit" />
         </EntityType>
         <EntityType Name="Proprietaire">
           <Key>
@@ -44,6 +46,8 @@
           <Property Name="Image_Prop" Type="nvarchar(max)" />
           <Property Name="Role" Type="nvarchar(max)" />
           <Property Name="Image_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Blocked" Type="bit" />
+          <Property Name="Favourite" Type="bit" />
         </EntityType>
         <EntityType Name="Reclamation">
           <Key>
@@ -66,6 +70,7 @@
           <Property Name="Id_Loc" Type="int" Nullable="false" />
           <Property Name="Id_Voit" Type="int" Nullable="false" />
           <Property Name="StatusReservation" Type="nvarchar(max)" />
+          <Property Name="Payment" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Voiture">
           <Key>
@@ -205,6 +210,8 @@
           <Property Name="image_Loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Reclamation" Relationship="Self.FK_Reclamation_Locataire" FromRole="Locataire" ToRole="Reclamation" />
           <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Locataire" FromRole="Locataire" ToRole="Reservation" />
+          <Property Name="Blocked" Type="Boolean" />
+          <Property Name="Favourite" Type="Boolean" />
         </EntityType>
         <EntityType Name="Proprietaire">
           <Key>
@@ -222,6 +229,8 @@
           <Property Name="Image_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Reclamation" Relationship="Self.FK_Reclamation_Proprietaire" FromRole="Proprietaire" ToRole="Reclamation" />
           <NavigationProperty Name="Voiture" Relationship="Self.FK_Voiture_Proprietaire" FromRole="Proprietaire" ToRole="Voiture" />
+          <Property Name="Blocked" Type="Boolean" />
+          <Property Name="Favourite" Type="Boolean" />
         </EntityType>
         <EntityType Name="Reclamation">
           <Key>
@@ -247,7 +256,8 @@
           <Property Name="Id_Voit" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Locataire" Relationship="Self.FK_Reservation_Locataire" FromRole="Reservation" ToRole="Locataire" />
           <NavigationProperty Name="Voiture" Relationship="Self.FK_Reservation_Voiture" FromRole="Reservation" ToRole="Voiture" />
-          <Property Name="StatusReservation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusReservation" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Payment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Voiture">
           <Key>
@@ -379,6 +389,8 @@
           <EntitySetMapping Name="Locataire">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Locataire">
               <MappingFragment StoreEntitySet="Locataire">
+                <ScalarProperty Name="Favourite" ColumnName="Favourite" />
+                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
                 <ScalarProperty Name="Id_Locataire" ColumnName="Id_Locataire" />
                 <ScalarProperty Name="Email_Loc" ColumnName="Email_Loc" />
                 <ScalarProperty Name="Password_Loc" ColumnName="Password_Loc" />
@@ -395,6 +407,8 @@
           <EntitySetMapping Name="Proprietaire">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Proprietaire">
               <MappingFragment StoreEntitySet="Proprietaire">
+                <ScalarProperty Name="Favourite" ColumnName="Favourite" />
+                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
                 <ScalarProperty Name="Id_Proprietaire" ColumnName="Id_Proprietaire" />
                 <ScalarProperty Name="Name_Prop" ColumnName="Name_Prop" />
                 <ScalarProperty Name="Email_Prop" ColumnName="Email_Prop" />
@@ -422,6 +436,7 @@
           <EntitySetMapping Name="Reservation">
             <EntityTypeMapping TypeName="LocationDeVoituresModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
                 <ScalarProperty Name="StatusReservation" ColumnName="StatusReservation" />
                 <ScalarProperty Name="Id_Reservation" ColumnName="Id_Reservation" />
                 <ScalarProperty Name="Date_Reservation" ColumnName="Date_Reservation" />

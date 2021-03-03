@@ -408,6 +408,21 @@
     </Content>
     <Content Include="Areas\Proprietaire\Views\Default\AddReclamation.cshtml" />
     <Content Include="Areas\Proprietaire\Views\Default\ListReservation.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\Create.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\Delete.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\DeleteRes.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\EditProfil.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\EditRes.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\EditReservation.cshtml" />
+    <Content Include="Areas\Locataire\Views\Locat\MesReserve.cshtml" />
+    <Content Include="Areas\Admin\Views\InfoClient\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\InfoClient\DeleteResLoc.cshtml" />
+    <Content Include="Areas\Admin\Views\InfoClient\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\InfoClient\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\InfoClient\EditResLoc.cshtml" />
+    <Content Include="Areas\Admin\Views\InfoClient\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\InfoClient\LocReserve.cshtml" />
+    <Content Include="Areas\Admin\Views\Prop\ListReclamation.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2295,7 +2310,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InfoClientController.cs" />
     <Compile Include="Areas\Admin\Controllers\PropController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserStatusController.cs" />
+    <Compile Include="Areas\Admin\Services\UserService.cs" />
     <Compile Include="Areas\Locataire\Controllers\LocatController.cs" />
     <Compile Include="Areas\Locataire\LocataireAreaRegistration.cs" />
     <Compile Include="Areas\Proprietaire\Controllers\CarsController.cs" />

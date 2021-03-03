@@ -11,7 +11,8 @@ namespace Projet_Asp_Location_Voitures_2021.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Voiture
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,7 @@ namespace Projet_Asp_Location_Voitures_2021.Models
         public int Id_Voiture { get; set; }
         public string Marque { get; set; }
         public string Couleur { get; set; }
+        [Display(Prompt = "Année")]
         public Nullable<int> Annee { get; set; }
         public int Id_Prop { get; set; }
         public decimal Prix { get; set; }

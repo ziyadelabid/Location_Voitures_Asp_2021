@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Projet_Asp_Location_Voitures_2021.Models.Voiture>
 
 @{
+    Layout = "~/Areas/Locataire/Views/Shared/UserLayout.cshtml";
     ViewBag.Title = "DashboardLoc";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel="stylesheet">
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 
@@ -141,7 +142,7 @@
                         <div class="d-flex flex-column">
                             <small class="text-muted mb-1">Carburant</small>
                             <div class="d-flex flex-row">
-                                <img src="https://imgur.com/iPtsG7I.png" width="35px" height="25px">
+                                <img src="https://imgur.com/iPtsG7I.png" style="width:35px; height:25px;">
                                 <div class="d-flex flex-column ml-1"><h6 class="ml-1">@item.Carburant</h6></div>
                             </div>
                         </div>
@@ -156,7 +157,7 @@
                     <div class="row" style="margin-top:10px">
                         <div class="col-sm-12">
                             <a href="@Url.Action("ReservationPage", "Locat", new { id = item.Id_Voiture })" style="width:70%" class="btn btn-success" role="button"><small>Réserver</small></a>
-                            
+
                         </div>
 
                     </div>
@@ -171,6 +172,4 @@
 </body>
 
 </html>
-
-
 

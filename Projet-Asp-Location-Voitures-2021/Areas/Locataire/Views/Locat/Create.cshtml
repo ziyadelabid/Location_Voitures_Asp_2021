@@ -1,0 +1,147 @@
+﻿@model  Projet_Asp_Location_Voitures_2021.Models.Locataire
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Locataire/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Inscription</title>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <!-- Title Page-->
+    <title>Inscription</title>
+    <!-- Icons font CSS-->
+    <link href="~/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Vendor CSS-->
+    <link href="~/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <!-- Main CSS-->
+    <link href="~/css/main.css" rel="stylesheet" media="all">
+    <style>
+        body {
+            margin-top: 30px;
+            background-position: center;
+            /* Center the image */ background-repeat: repeat-y; /* Do not repeat the image */
+            background-size: cover;
+            background-image: url("/images/profilbg.jpg");
+        }
+    </style>
+</head>
+
+<body>
+
+    @using (Html.BeginForm("Create", "Locat", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="page-wrapper  p-t-45 p-b-50">
+            <div class="wrapper wrapper--w790">
+                <div class="card card-5">
+                    <div class="card-heading">
+                        <h2 class="title">Inscription</h2>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="form-row">
+                                <div class="name">Nom :</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.Name_Loc, new { htmlAttributes = new { @class = "input--style-5" } })
+                                        @Html.ValidationMessageFor(model => model.Name_Loc, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Email :</div>                              
+                                <div class="value">
+                                    <div class="input-group">
+                                       @Html.EditorFor(model => model.Email_Loc, new { htmlAttributes = new { @class = "input--style-5" } })
+                                       @Html.ValidationMessageFor(model => model.Email_Loc, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                         
+                            <div class="form-row">
+                                <div class="name">Mot de passe :</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        @Html.PasswordFor(model => model.Password_Loc, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Password_Loc, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="name">Téléphone :</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.Phone_number_Loc, new { htmlAttributes = new { @class = "input--style-5" } })
+                                        @Html.ValidationMessageFor(model => model.Phone_number_Loc, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>                        
+                                <div class="form-row">
+                                    <div class="name">CIN :</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.Cin_Loc, new { htmlAttributes = new { @class = "input--style-5" } })
+                                            @Html.ValidationMessageFor(model => model.Cin_Loc, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="form-row">
+                                <div class="name">Permis :</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.Permis, new { htmlAttributes = new { @class = "input--style-5" } })
+                                        @Html.ValidationMessageFor(model => model.Permis, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Adresse :</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.Adresse_Loc, new { htmlAttributes = new { @class = "input--style-5" } })
+                                        @Html.ValidationMessageFor(model => model.Adresse_Loc, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name"></div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <div>
+                                            <button class="btn btn--radius-2 btn--green" type="submit">S'inscrire</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Jquery JS-->
+        <script src="~/vendor/jquery/jquery.min.js"></script>
+        <!-- Vendor JS-->
+        <script src="~/vendor/select2/select2.min.js"></script>
+        <script src="vendor/datepicker/moment.min.js"></script>
+        <script src="vendor/datepicker/daterangepicker.js"></script>
+        <!-- Main JS-->
+        <script src="~/js/global.js"></script>
+    }
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+<!-- end document-->
